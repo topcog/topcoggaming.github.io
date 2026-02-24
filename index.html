@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TopCog – Indie Game Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-deep: #0f0e17;
+  --bg-card: #1a1927;
+  --bg-card-hover: #221f35;
+  --accent-orange: #ff8906;
+  --accent-pink: #e53170;
+  --accent-cyan: #00eaff;
+  --accent-purple: #a855f7;
+  --accent-green: #34d399;
+  --text-primary: #fffffe;
+  --text-secondary: #a7a9be;
+  --text-muted: #6b6d80;
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ========== ANIMATED BACKGROUND ========== */
+.bg-effects {
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none; overflow: hidden;
+}
+.bg-effects .orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(120px); opacity: 0.12;
+  animation: float 25s ease-in-out infinite;
+}
+.bg-effects .orb:nth-child(1) {
+  width: 600px; height: 600px;
+  background: var(--accent-pink);
+  top: -10%; left: -10%;
+}
+.bg-effects .orb:nth-child(2) {
+  width: 500px; height: 500px;
+  background: var(--accent-cyan);
+  top: 30%; right: -12%;
+  animation-delay: -8s;
+}
+.bg-effects .orb:nth-child(3) {
+  width: 450px; height: 450px;
+  background: var(--accent-purple);
+  bottom: 5%; left: 25%;
+  animation-delay: -16s;
+}
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -30px) scale(1.08); }
+  66% { transform: translate(-30px, 25px) scale(0.95); }
+}
+
+/* ========== NAV ========== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 14px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(15, 14, 23, 0.82);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
+}
+.nav-logo img { height: 38px; width: auto; }
+.nav-logo span {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700; font-size: 1.35rem;
+  color: var(--text-primary);
+}
+.nav-right {
+  display: flex; align-items: center; gap: 28px;
+}
+.nav-right a {
+  color: var(--text-secondary); text-decoration: none;
+  font-weight: 500; font-size: 0.92rem;
+  transition: color 0.2s;
+}
+.nav-right a:hover { color: var(--text-primary); }
+.nav-social {
+  display: flex; gap: 14px; align-items: center;
+  padding-left: 16px;
+  border-left: 1px solid rgba(255,255,255,0.08);
+}
+.nav-social a {
+  color: var(--text-muted); transition: color 0.2s;
+  display: flex; align-items: center;
+}
+.nav-social a:hover { color: var(--accent-cyan); }
+
+.nav-toggle {
+  display: none; background: none; border: none;
+  color: var(--text-primary); cursor: pointer; font-size: 1.5rem;
+}
+@media (max-width: 768px) {
+  nav { padding: 12px 20px; }
+  .nav-toggle { display: block; }
+  .nav-right {
+    display: none; flex-direction: column; gap: 18px;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: rgba(15, 14, 23, 0.96);
+    backdrop-filter: blur(24px);
+    padding: 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav-right.open { display: flex; }
+  .nav-social { border-left: none; padding-left: 0; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06); }
+}
+
+/* ========== HERO ========== */
+.hero {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 130px 24px 80px;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 16px;
+  background: rgba(52, 211, 153, 0.1);
+  border: 1px solid rgba(52, 211, 153, 0.2);
+  border-radius: 100px;
+  font-size: 0.82rem; font-weight: 600;
+  color: var(--accent-green);
+  margin-bottom: 28px;
+  animation: fadeUp 0.6s ease both;
+}
+.hero-badge .dot {
+  width: 7px; height: 7px;
+  background: var(--accent-green);
+  border-radius: 50%;
+  animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+}
+.hero h1 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 700; line-height: 1.08;
+  margin-bottom: 20px;
+  animation: fadeUp 0.6s 0.08s ease both;
+}
+.hero h1 .grad {
+  background: linear-gradient(135deg, var(--accent-orange), var(--accent-pink), var(--accent-cyan));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  font-size: 1.15rem; color: var(--text-secondary);
+  max-width: 520px; margin-bottom: 36px;
+  animation: fadeUp 0.6s 0.16s ease both;
+}
+.hero-cta {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  justify-content: center;
+  animation: fadeUp 0.6s 0.24s ease both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========== BUTTONS ========== */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 26px; border-radius: var(--radius-sm);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600; font-size: 0.92rem;
+  text-decoration: none; border: none;
+  cursor: pointer; transition: all 0.25s;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-orange), #ff6b2b);
+  color: #fff; box-shadow: 0 4px 24px rgba(255, 137, 6, 0.25);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(255, 137, 6, 0.35);
+}
+.btn-ghost {
+  background: rgba(255,255,255,0.06); color: var(--text-primary);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.btn-ghost:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+}
+
+/* ========== SECTIONS ========== */
+.section {
+  position: relative; z-index: 1;
+  max-width: 1180px; margin: 0 auto;
+  padding: 60px 24px;
+}
+.section-label {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent-cyan); margin-bottom: 10px;
+}
+.section-label::before {
+  content: ''; width: 20px; height: 2px;
+  background: var(--accent-cyan);
+}
+.section-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 700; margin-bottom: 48px;
+}
+
+/* ========== FEATURED (NEON SPELLSTORM) ========== */
+.featured {
+  display: grid; grid-template-columns: 1.1fr 1fr;
+  gap: 48px; align-items: center;
+  background: linear-gradient(135deg, rgba(229,49,112,0.07), rgba(0,234,255,0.05));
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 24px; padding: 48px;
+  margin-bottom: 32px;
+  transition: border-color 0.3s;
+}
+.featured:hover { border-color: rgba(255,255,255,0.1); }
+
+.featured-screens {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+}
+.featured-screens img {
+  width: 100%; border-radius: var(--radius-sm);
+  aspect-ratio: 9/16; object-fit: cover;
+  transition: transform 0.3s;
+}
+.featured-screens img:hover { transform: scale(1.03); }
+
+.featured-body h3 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 2rem; margin-bottom: 6px;
+}
+.featured-body .tagline {
+  color: var(--accent-orange); font-weight: 500;
+  margin-bottom: 16px; font-size: 1rem;
+}
+.featured-body p {
+  color: var(--text-secondary); line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 860px) {
+  .featured { grid-template-columns: 1fr; padding: 28px; gap: 28px; }
+  .featured-screens { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+}
+
+/* ========== STORE BADGES ========== */
+.stores {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.store {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 15px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary); text-decoration: none;
+  font-weight: 500; font-size: 0.85rem;
+  transition: all 0.2s; white-space: nowrap;
+}
+.store:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.14);
+  transform: translateY(-2px);
+}
+.store svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+/* ========== GAME CARDS ========== */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+@media (max-width: 500px) {
+  .game-grid { grid-template-columns: 1fr; }
+}
+.game-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: var(--radius); padding: 26px;
+  display: flex; flex-direction: column;
+  transition: all 0.3s;
+}
+.game-card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(255,255,255,0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+}
+.game-header {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 14px;
+}
+.game-icon {
+  width: 60px; height: 60px;
+  border-radius: 14px; object-fit: cover; flex-shrink: 0;
+  background: var(--bg-deep);
+}
+.game-header-text h3 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.15rem; font-weight: 600;
+}
+.game-header-text .sub {
+  font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;
+}
+
+.tag {
+  display: inline-block; padding: 2px 9px;
+  border-radius: 100px; font-size: 0.68rem;
+  font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.04em; margin-left: 8px;
+  vertical-align: middle;
+}
+.tag-new { background: rgba(52,211,153,0.14); color: var(--accent-green); }
+.tag-popular { background: rgba(255,137,6,0.14); color: var(--accent-orange); }
+.tag-free { background: rgba(0,234,255,0.14); color: var(--accent-cyan); }
+.tag-paid { background: rgba(168,85,247,0.14); color: var(--accent-purple); }
+
+.game-card p {
+  color: var(--text-secondary); font-size: 0.88rem;
+  margin-bottom: 18px; flex: 1; line-height: 1.6;
+}
+.game-card .stores { margin-top: auto; }
+
+/* ========== DISCORD CTA ========== */
+.discord-section {
+  position: relative; z-index: 1;
+  max-width: 1180px; margin: 40px auto 0;
+  padding: 0 24px 100px;
+}
+.discord-card {
+  background: linear-gradient(135deg, #5865F2, #4752c4);
+  border-radius: 24px; padding: 56px 48px;
+  text-align: center; position: relative; overflow: hidden;
+}
+.discord-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 25% 40%, rgba(255,255,255,0.1), transparent 65%);
+}
+.discord-card h2 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  margin-bottom: 10px; position: relative;
+}
+.discord-card p {
+  color: rgba(255,255,255,0.8); max-width: 460px;
+  margin: 0 auto 24px; position: relative; font-size: 1rem;
+}
+.discord-card .btn {
+  position: relative; background: #fff; color: #5865F2;
+}
+.discord-card .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+
+/* ========== FOOTER ========== */
+footer {
+  position: relative; z-index: 1;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 32px 24px;
+  text-align: center;
+}
+footer .foot-links {
+  display: flex; justify-content: center;
+  gap: 24px; flex-wrap: wrap; margin-bottom: 14px;
+}
+footer .foot-links a {
+  color: var(--text-muted); text-decoration: none;
+  font-size: 0.85rem; transition: color 0.2s;
+}
+footer .foot-links a:hover { color: var(--text-secondary); }
+footer .copy {
+  color: var(--text-muted); font-size: 0.8rem;
+}
+
+/* ========== SVG ICONS (inline) ========== */
+.icon-apple, .icon-google, .icon-steam, .icon-amazon, .icon-discord { display: inline-flex; }
+</style>
+</head>
+<body>
+
+<div class="bg-effects">
+  <div class="orb"></div>
+  <div class="orb"></div>
+  <div class="orb"></div>
+</div>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <a class="nav-logo" href="#">
+    <img src="https://topcoggaming.com/wp-content/uploads/2021/09/Top-Cog-Logo-1.png" alt="TopCog Logo">
+    <span>TopCog</span>
+  </a>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-right').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+  <div class="nav-right">
+    <a href="#games">Games</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <div class="nav-social">
+      <a href="https://twitter.com/Top_Cog" target="_blank" rel="noopener" aria-label="X / Twitter">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="https://discord.gg/nCh7RGxVTR" target="_blank" rel="noopener" aria-label="Discord">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/Tap-Wizard-2-111853567820430" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-badge"><span class="dot"></span> Now Available — Tap Wizard Realms</div>
+  <h1>We Make Games<br>That <span class="grad">Keep You Playing</span></h1>
+  <p>TopCog is a one-person indie studio crafting idle RPGs, action roguelites, and incremental games with deep systems and tons of replayability.</p>
+  <div class="hero-cta">
+    <a href="#games" class="btn btn-primary">Browse All Games ↓</a>
+    <a href="https://discord.gg/nCh7RGxVTR" target="_blank" class="btn btn-ghost">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+      Join the Discord
+    </a>
+  </div>
+</section>
+
+<!-- ===== ALL GAMES ===== -->
+<section class="section" id="games">
+  <div class="section-label">The Collection</div>
+  <h2 class="section-title">All Games</h2>
+
+  <!-- ── FEATURED: Neon Spellstorm ── -->
+  <div class="featured">
+    <div class="featured-screens">
+      <img src="https://topcoggaming.com/wp-content/uploads/2021/12/6-576x1024.png" alt="Neon Spellstorm screenshot 1" loading="lazy">
+      <img src="https://topcoggaming.com/wp-content/uploads/2021/12/2-576x1024.png" alt="Neon Spellstorm screenshot 2" loading="lazy">
+      <img src="https://topcoggaming.com/wp-content/uploads/2021/12/3-576x1024.png" alt="Neon Spellstorm screenshot 3" loading="lazy">
+      <img src="https://topcoggaming.com/wp-content/uploads/2021/12/5-576x1024.png" alt="Neon Spellstorm screenshot 4" loading="lazy">
+    </div>
+    <div class="featured-body">
+      <h3>Neon Spellstorm <span class="tag tag-new">New</span></h3>
+      <div class="tagline">Action Roguelite · 2025</div>
+      <p>Race along a crumbling neon path as a powerful wizard! Chain-cast 28 unique spells, gear up with 70+ trinkets, stack insane synergies, and gain permanent upgrades. Pixel art meets 3D physics in this explosive, otherworldly roguelite.</p>
+      <div class="stores">
+        <a class="store" href="https://store.steampowered.com/app/3298080/Neon_Spellstorm/?utm_source=tcwebsite" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0z"/></svg>
+          Steam
+        </a>
+        <a class="store" href="https://apps.apple.com/us/app/neon-spellstorm/id6746943645" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store
+        </a>
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.topcog.neonspellstorm" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.807 1.626a1 1 0 0 1 0 1.732l-2.808 1.626L15.206 12l2.492-2.492zM5.864 2.658L16.8 8.99l-2.3 2.3-8.636-8.632z"/></svg>
+          Google Play
+        </a>
+        <a class="store" href="https://discord.gg/nCh7RGxVTR" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.373-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419s.956-2.419 2.157-2.419c1.21 0 2.176 1.095 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419s.956-2.419 2.157-2.419c1.21 0 2.176 1.095 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+          Discord
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── GAME GRID ── -->
+  <div class="game-grid">
+
+    <!-- Tap Wizard Realms (2025) -->
+    <div class="game-card">
+      <div class="game-header">
+        <img class="game-icon" src="https://topcoggaming.com/wp-content/uploads/2021/08/tw-128_orig.png" alt="Tap Wizard Realms icon">
+        <div class="game-header-text">
+          <h3>Tap Wizard Realms <span class="tag tag-new">New</span></h3>
+          <div class="sub">Idle RPG · 2025 · Free</div>
+        </div>
+      </div>
+      <p>Tap Wizard is back! Your wizard auto-battles 24/7 across 60+ locations. Arrange spells on the Spell Grid, discover roguelite Glyphs, and prestige through the Chrono Engine. No two runs are the same.</p>
+      <div class="stores">
+        <a class="store" href="https://apps.apple.com/us/app/tap-wizard-realms/id6757723385" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store
+        </a>
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.topcog.tapwizardrealms" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.807 1.626a1 1 0 0 1 0 1.732l-2.808 1.626L15.206 12l2.492-2.492zM5.864 2.658L16.8 8.99l-2.3 2.3-8.636-8.632z"/></svg>
+          Google Play
+        </a>
+        <a class="store" href="https://discord.gg/nCh7RGxVTR" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.373-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419s.956-2.419 2.157-2.419c1.21 0 2.176 1.095 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419s.956-2.419 2.157-2.419c1.21 0 2.176 1.095 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+          Discord
+        </a>
+      </div>
+    </div>
+
+    <!-- Tap Wizard 2 (2021) -->
+    <div class="game-card">
+      <div class="game-header">
+        <img class="game-icon" src="https://topcoggaming.com/wp-content/uploads/2021/08/tw-128_orig.png" alt="Tap Wizard 2 icon">
+        <div class="game-header-text">
+          <h3>Tap Wizard 2 <span class="tag tag-popular">Popular</span></h3>
+          <div class="sub">Idle RPG · 2021 · Free</div>
+        </div>
+      </div>
+      <p>A fusion of Idle, Incremental, ARPG, and Twin-Stick Shooter genres. Choose your Spells, Perks, and Traits, then let the Wizard do the work. Multiple prestige systems and an active community.</p>
+      <div class="stores">
+        <a class="store" href="https://apps.apple.com/us/app/tap-wizard-2-idle-magic-game/id1596750535" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store
+        </a>
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.topcog.tapwizard2" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.807 1.626a1 1 0 0 1 0 1.732l-2.808 1.626L15.206 12l2.492-2.492zM5.864 2.658L16.8 8.99l-2.3 2.3-8.636-8.632z"/></svg>
+          Google Play
+        </a>
+        <a class="store" href="https://store.steampowered.com/app/1836550/Tap_Wizard_2/" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0z"/></svg>
+          Steam
+        </a>
+        <a class="store" href="https://www.amazon.com/Tap-Wizard-Idle-Magic-Quest/dp/B09MJDCTLZ/" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.064 2.729 1.396 5.715 2.095 8.958 2.095 2.197 0 4.395-.395 6.593-1.186.328-.116.607-.064.837.157.164.148.225.348.195.601-.031.253-.143.42-.337.503-2.197.841-4.556 1.261-7.076 1.261-3.405 0-6.555-.745-9.449-2.236-.18-.093-.27-.238-.069-.131zm12.211-4.327c-.148.246-.38.319-.694.222a7.04 7.04 0 0 0-2.564-.445c-.844 0-1.633.135-2.37.408-.246.09-.463.09-.652-.004-.188-.093-.283-.256-.283-.489 0-.222.09-.381.27-.478a7.688 7.688 0 0 1 3.162-.64c1.13 0 2.14.198 3.028.593.152.067.245.178.283.334.037.156-.03.312-.18.5z"/></svg>
+          Amazon
+        </a>
+      </div>
+    </div>
+
+    <!-- WizUp! (2024) -->
+    <div class="game-card">
+      <div class="game-header">
+        <img class="game-icon" src="https://topcoggaming.com/wp-content/uploads/2021/08/tw-128_orig.png" alt="WizUp! icon">
+        <div class="game-header-text">
+          <h3>WizUp!</h3>
+          <div class="sub">Incremental · 2024 · $4.99</div>
+        </div>
+      </div>
+      <p>A wizard incremental with unfolding mechanics. Kill enemies, collect resources, purchase upgrades, prestige, and repeat. 45+ unique resources and items to discover. No ads, no in-app purchases.</p>
+      <div class="stores">
+        <a class="store" href="https://apps.apple.com/us/app/wizup/id6478612783" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store
+        </a>
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.topcog.wizup" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.807 1.626a1 1 0 0 1 0 1.732l-2.808 1.626L15.206 12l2.492-2.492zM5.864 2.658L16.8 8.99l-2.3 2.3-8.636-8.632z"/></svg>
+          Google Play
+        </a>
+      </div>
+    </div>
+
+    <!-- Duel Arena (2024) -->
+    <div class="game-card">
+      <div class="game-header">
+        <img class="game-icon" src="https://topcoggaming.com/wp-content/uploads/2021/08/tw-128_orig.png" alt="Duel Arena icon">
+        <div class="game-header-text">
+          <h3>Duel Arena</h3>
+          <div class="sub">PvP Strategy · 2024 · Free</div>
+        </div>
+      </div>
+      <p>A fresh PvP strategy game with simple-to-learn, hard-to-master mechanics. Build a team of 5 Heroes with unique abilities and duel rival commanders. Rotating events and 35+ heroes to collect.</p>
+      <div class="stores">
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.topcog.duelarena" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.807 1.626a1 1 0 0 1 0 1.732l-2.808 1.626L15.206 12l2.492-2.492zM5.864 2.658L16.8 8.99l-2.3 2.3-8.636-8.632z"/></svg>
+          Google Play
+        </a>
+      </div>
+    </div>
+
+    <!-- Grim RPG -->
+    <div class="game-card">
+      <div class="game-header">
+        <img class="game-icon" src="https://topcoggaming.com/wp-content/uploads/2021/08/128_orig.png" alt="Grim RPG icon">
+        <div class="game-header-text">
+          <h3>Grim RPG</h3>
+          <div class="sub">Incremental Adventure · Free</div>
+        </div>
+      </div>
+      <p>An incremental adventure RPG with a dark fantasy setting. Battle enemies, collect gear, and progress through an ever-expanding world at your own pace.</p>
+      <div class="stores">
+        <a class="store" href="https://apps.apple.com/us/app/grim-rpg/id1551670378" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store
+        </a>
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.topcog.grim.rpg" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.807 1.626a1 1 0 0 1 0 1.732l-2.808 1.626L15.206 12l2.492-2.492zM5.864 2.658L16.8 8.99l-2.3 2.3-8.636-8.632z"/></svg>
+          Google Play
+        </a>
+      </div>
+    </div>
+
+    <!-- Simple RPG -->
+    <div class="game-card">
+      <div class="game-header">
+        <img class="game-icon" src="https://topcoggaming.com/wp-content/uploads/2021/08/srpg-128_orig.png" alt="Simple RPG icon">
+        <div class="game-header-text">
+          <h3>Simple RPG</h3>
+          <div class="sub">Idle Tap Adventure · Free</div>
+        </div>
+      </div>
+      <p>An idle tap adventure with straightforward RPG mechanics. Level up, collect loot, and watch your hero grow stronger with each tap and each idle moment.</p>
+      <div class="stores">
+        <a class="store" href="https://apps.apple.com/us/app/simple-rpg-idle-tap-tapper/id1489959334" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store
+        </a>
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.topcog.simplerpg" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.807 1.626a1 1 0 0 1 0 1.732l-2.808 1.626L15.206 12l2.492-2.492zM5.864 2.658L16.8 8.99l-2.3 2.3-8.636-8.632z"/></svg>
+          Google Play
+        </a>
+      </div>
+    </div>
+
+    <!-- Tap Wizard (Original) -->
+    <div class="game-card">
+      <div class="game-header">
+        <img class="game-icon" src="https://topcoggaming.com/wp-content/uploads/2021/08/tw-128_orig.png" alt="Tap Wizard icon">
+        <div class="game-header-text">
+          <h3>Tap Wizard</h3>
+          <div class="sub">Idle Magic Quest · Free</div>
+        </div>
+      </div>
+      <p>The original that started it all. Equip your Wizard with a loadout of Spells and watch as they defeat over 60 unique enemy types. 100+ spell types to collect.</p>
+      <div class="stores">
+        <a class="store" href="https://apps.apple.com/us/app/tap-wizard-rpg-arcane-quest/id1369751082" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store
+        </a>
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.topcog.tapwizardrpgarcanequest" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.807 1.626a1 1 0 0 1 0 1.732l-2.808 1.626L15.206 12l2.492-2.492zM5.864 2.658L16.8 8.99l-2.3 2.3-8.636-8.632z"/></svg>
+          Google Play
+        </a>
+      </div>
+    </div>
+
+    <!-- Ninja Prime -->
+    <div class="game-card">
+      <div class="game-header">
+        <img class="game-icon" src="https://topcoggaming.com/wp-content/uploads/2021/08/inp-128_orig.png" alt="Ninja Prime icon">
+        <div class="game-header-text">
+          <h3>Ninja Prime</h3>
+          <div class="sub">Tap Quest · Free</div>
+        </div>
+      </div>
+      <p>A tap-driven action quest where your ninja battles through waves of enemies. Quick sessions, satisfying progression, and flashy combat abilities.</p>
+      <div class="stores">
+        <a class="store" href="https://apps.apple.com/us/app/ninja-prime-tap-quest/id1471002445" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store
+        </a>
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.topcog.idleninjaprime" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.807 1.626a1 1 0 0 1 0 1.732l-2.808 1.626L15.206 12l2.492-2.492zM5.864 2.658L16.8 8.99l-2.3 2.3-8.636-8.632z"/></svg>
+          Google Play
+        </a>
+      </div>
+    </div>
+
+    <!-- Idle Loot Quest -->
+    <div class="game-card">
+      <div class="game-header">
+        <img class="game-icon" src="https://topcoggaming.com/wp-content/uploads/2021/08/ilq-128_orig.png" alt="Idle Loot Quest icon">
+        <div class="game-header-text">
+          <h3>Idle Loot Quest</h3>
+          <div class="sub">Idle Clicker · Free</div>
+        </div>
+      </div>
+      <p>An idle clicker focused on loot collection and incremental progression. Watch your hero grow stronger while you're away and come back to mountains of rewards.</p>
+      <div class="stores">
+        <a class="store" href="https://apps.apple.com/us/app/idle-loot-quest/id1073634515" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store
+        </a>
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.topcog.idlelootquest" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.807 1.626a1 1 0 0 1 0 1.732l-2.808 1.626L15.206 12l2.492-2.492zM5.864 2.658L16.8 8.99l-2.3 2.3-8.636-8.632z"/></svg>
+          Google Play
+        </a>
+      </div>
+    </div>
+
+    <!-- Idle Brain Quest -->
+    <div class="game-card">
+      <div class="game-header">
+        <img class="game-icon" src="https://topcoggaming.com/wp-content/uploads/2021/08/ibq-128_orig.png" alt="Idle Brain Quest icon">
+        <div class="game-header-text">
+          <h3>Idle Brain Quest</h3>
+          <div class="sub">Idle Puzzle · Free</div>
+        </div>
+      </div>
+      <p>Put your brain to work in this idle puzzle experience. Solve challenges, earn upgrades, and let your intelligence grow even when you're not playing.</p>
+      <div class="stores">
+        <a class="store" href="https://apps.apple.com/us/app/idle-quest/id949933004" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store
+        </a>
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.topcog.idlegenius.android" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.807 1.626a1 1 0 0 1 0 1.732l-2.808 1.626L15.206 12l2.492-2.492zM5.864 2.658L16.8 8.99l-2.3 2.3-8.636-8.632z"/></svg>
+          Google Play
+        </a>
+      </div>
+    </div>
+
+    <!-- Idle Quest -->
+    <div class="game-card">
+      <div class="game-header">
+        <img class="game-icon" src="https://topcoggaming.com/wp-content/uploads/2021/08/iq-128_orig.png" alt="Idle Quest icon">
+        <div class="game-header-text">
+          <h3>Idle Quest</h3>
+          <div class="sub">Idle Clicker · Free</div>
+        </div>
+      </div>
+      <p>Where it all began. The original TopCog idle clicker — simple, satisfying, and endlessly replayable. Tap, upgrade, prestige, repeat.</p>
+      <div class="stores">
+        <a class="store" href="https://apps.apple.com/us/app/idle-quest/id949933004" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store
+        </a>
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.topcog.idlequest.android" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.807 1.626a1 1 0 0 1 0 1.732l-2.808 1.626L15.206 12l2.492-2.492zM5.864 2.658L16.8 8.99l-2.3 2.3-8.636-8.632z"/></svg>
+          Google Play
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /game-grid -->
+</section>
+
+<!-- ===== DISCORD CTA ===== -->
+<section class="discord-section">
+  <div class="discord-card">
+    <h2>Join the TopCog Community</h2>
+    <p>Chat with other players, report bugs, suggest features, and get the latest news on upcoming updates and releases.</p>
+    <a href="https://discord.gg/nCh7RGxVTR" target="_blank" class="btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.373-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419s.956-2.419 2.157-2.419c1.21 0 2.176 1.095 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419s.956-2.419 2.157-2.419c1.21 0 2.176 1.095 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+      Join Discord
+    </a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="foot-links">
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://topcoggaming.com/privacy-policy-and-terms-of-service/">Privacy &amp; Terms</a>
+  </div>
+  <div class="copy">&copy; 2025 TopCog, LLC</div>
+</footer>
+
+</body>
+</html>
