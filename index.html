@@ -137,13 +137,8 @@ nav {
 }
 .hero p {
   font-size: 1.1rem; color: var(--text-secondary);
-  max-width: 560px; margin-bottom: 20px;
+  max-width: 560px;
   animation: fadeUp 0.6s ease both;
-}
-.hero-cta {
-  display: flex; gap: 14px; flex-wrap: wrap;
-  justify-content: center;
-  animation: fadeUp 0.6s 0.08s ease both;
 }
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
@@ -159,35 +154,17 @@ nav {
   text-decoration: none; border: none;
   cursor: pointer; transition: all 0.25s;
 }
-.btn-ghost {
-  background: rgba(255,255,255,0.06); color: var(--text-primary);
-  border: 1px solid rgba(255,255,255,0.1);
-}
-.btn-ghost:hover {
-  background: rgba(255,255,255,0.1);
-  transform: translateY(-2px);
-}
 
 /* ========== SECTIONS ========== */
 .section {
   position: relative; z-index: 1;
   max-width: 1180px; margin: 0 auto;
-  padding: 60px 24px;
-}
-.section-label {
-  display: inline-flex; align-items: center; gap: 10px;
-  font-size: 0.78rem; font-weight: 700;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--accent-cyan); margin-bottom: 10px;
-}
-.section-label::before {
-  content: ''; width: 20px; height: 2px;
-  background: var(--accent-cyan);
+  padding: 40px 24px;
 }
 .section-title {
   font-family: 'Fredoka', sans-serif;
   font-size: clamp(1.8rem, 4vw, 2.6rem);
-  font-weight: 700; margin-bottom: 48px;
+  font-weight: 700; margin-bottom: 32px;
 }
 
 /* ========== FEATURED (TAP WIZARD REALMS) ========== */
@@ -340,6 +317,85 @@ nav {
   box-shadow: 0 8px 24px rgba(0,0,0,0.25);
 }
 
+/* ========== ABOUT ========== */
+.about-section {
+  position: relative; z-index: 1;
+  max-width: 720px; margin: 0 auto;
+  padding: 60px 24px;
+}
+.about-section .section-title { text-align: center; }
+.about-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 20px;
+  padding: 40px;
+}
+.about-card p {
+  color: var(--text-secondary);
+  font-size: 1.05rem; line-height: 1.8;
+  margin-bottom: 20px;
+}
+.about-card p:last-of-type { margin-bottom: 0; }
+.about-card strong { color: var(--text-primary); font-weight: 600; }
+.about-card .highlight { color: var(--accent-orange); font-weight: 500; }
+.stats-row {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin-top: 32px; padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.stat { text-align: center; }
+.stat .num {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 2rem; font-weight: 700;
+  color: var(--accent-cyan);
+}
+.stat .label {
+  font-size: 0.82rem; color: var(--text-muted); margin-top: 4px;
+}
+@media (max-width: 500px) {
+  .about-card { padding: 28px; }
+  .stats-row { grid-template-columns: 1fr; gap: 20px; }
+}
+
+/* ========== CONTACT ========== */
+.contact-section {
+  position: relative; z-index: 1;
+  max-width: 600px; margin: 0 auto;
+  padding: 20px 24px 60px;
+}
+.contact-section .section-title { text-align: center; }
+.contact-cards {
+  display: flex; flex-direction: column; gap: 16px;
+}
+.contact-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  display: flex; align-items: center; gap: 20px;
+  text-decoration: none; color: var(--text-primary);
+  transition: all 0.3s;
+}
+.contact-card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(255,255,255,0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+}
+.contact-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.contact-icon.email { background: rgba(255,137,6,0.12); color: var(--accent-orange); }
+.contact-icon.discord { background: rgba(88,101,242,0.15); color: #5865F2; }
+.contact-icon.twitter { background: rgba(0,234,255,0.1); color: var(--accent-cyan); }
+.contact-card-text h3 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.1rem; font-weight: 600; margin-bottom: 2px;
+}
+.contact-card-text p { color: var(--text-muted); font-size: 0.88rem; }
+
 /* ========== FOOTER ========== */
 footer {
   position: relative; z-index: 1;
@@ -375,14 +431,14 @@ footer .copy {
 <!-- ===== NAV ===== -->
 <nav>
   <a class="nav-logo" href="#">
-    <img src="https://topcoggaming.com/wp-content/uploads/2021/09/Top-Cog-Logo-1.png" alt="TopCog Logo">
+    <img src="images/logo.png" alt="TopCog Logo">
     <span>TopCog</span>
   </a>
   <button class="nav-toggle" onclick="document.querySelector('.nav-right').classList.toggle('open')" aria-label="Menu">&#9776;</button>
   <div class="nav-right">
     <a href="#games">Games</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
     <div class="nav-social">
       <a href="https://twitter.com/Top_Cog" target="_blank" rel="noopener" aria-label="X / Twitter">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -397,18 +453,10 @@ footer .copy {
 <!-- ===== HERO ===== -->
 <section class="hero">
   <p>TopCog is a one-person indie studio crafting idle RPGs, action roguelites, and incremental games with deep systems and tons of replayability.</p>
-  <div class="hero-cta">
-    <a href="https://discord.gg/nCh7RGxVTR" target="_blank" class="btn btn-ghost">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.095 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-      Join the Discord
-    </a>
-  </div>
 </section>
 
 <!-- ===== ALL GAMES ===== -->
 <section class="section" id="games">
-  <div class="section-label">The Collection</div>
-  <h2 class="section-title">All Games</h2>
 
   <!-- ── FEATURED: Tap Wizard Realms ── -->
   <div class="featured">
@@ -446,7 +494,7 @@ footer .copy {
     <!-- Neon Spellstorm (2025) -->
     <div class="game-card">
       <div class="game-header">
-        <img class="game-icon" src="https://topcoggaming.com/wp-content/uploads/2021/08/tw-128_orig.png" alt="Neon Spellstorm icon">
+        <img class="game-icon" src="images/neonspellstorm-128.jpg" alt="Neon Spellstorm icon">
         <div class="game-header-text">
           <h3>Neon Spellstorm</h3>
           <div class="sub">Action Roguelite · 2025</div>
@@ -472,7 +520,7 @@ footer .copy {
     <!-- Tap Wizard 2 (2021) -->
     <div class="game-card">
       <div class="game-header">
-        <img class="game-icon" src="https://topcoggaming.com/wp-content/uploads/2021/08/tw-128_orig.png" alt="Tap Wizard 2 icon">
+        <img class="game-icon" src="images/tw2-128.jpg" alt="Tap Wizard 2 icon">
         <div class="game-header-text">
           <h3>Tap Wizard 2 <span class="tag tag-popular">Popular</span></h3>
           <div class="sub">Idle RPG · 2021 · Free</div>
@@ -502,7 +550,7 @@ footer .copy {
     <!-- WizUp! (2024) -->
     <div class="game-card">
       <div class="game-header">
-        <img class="game-icon" src="https://topcoggaming.com/wp-content/uploads/2021/08/tw-128_orig.png" alt="WizUp! icon">
+        <img class="game-icon" src="images/wizup-128.jpg" alt="WizUp! icon">
         <div class="game-header-text">
           <h3>WizUp!</h3>
           <div class="sub">Incremental · 2024 · $4.99</div>
@@ -521,28 +569,10 @@ footer .copy {
       </div>
     </div>
 
-    <!-- Duel Arena (2024) -->
-    <div class="game-card">
-      <div class="game-header">
-        <img class="game-icon" src="https://topcoggaming.com/wp-content/uploads/2021/08/tw-128_orig.png" alt="Duel Arena icon">
-        <div class="game-header-text">
-          <h3>Duel Arena</h3>
-          <div class="sub">PvP Strategy · 2024 · Free</div>
-        </div>
-      </div>
-      <p>A fresh PvP strategy game with simple-to-learn, hard-to-master mechanics. Build a team of 5 Heroes with unique abilities and duel rival commanders. Rotating events and 35+ heroes to collect.</p>
-      <div class="stores">
-        <a class="store" href="https://play.google.com/store/apps/details?id=com.topcog.duelarena" target="_blank">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.807 1.626a1 1 0 0 1 0 1.732l-2.808 1.626L15.206 12l2.492-2.492zM5.864 2.658L16.8 8.99l-2.3 2.3-8.636-8.632z"/></svg>
-          Google Play
-        </a>
-      </div>
-    </div>
-
     <!-- Grim RPG -->
     <div class="game-card">
       <div class="game-header">
-        <img class="game-icon" src="https://topcoggaming.com/wp-content/uploads/2021/08/128_orig.png" alt="Grim RPG icon">
+        <img class="game-icon" src="images/grim-128.png" alt="Grim RPG icon">
         <div class="game-header-text">
           <h3>Grim RPG</h3>
           <div class="sub">Incremental Adventure · Free</div>
@@ -560,7 +590,7 @@ footer .copy {
     <!-- Simple RPG -->
     <div class="game-card">
       <div class="game-header">
-        <img class="game-icon" src="https://topcoggaming.com/wp-content/uploads/2021/08/srpg-128_orig.png" alt="Simple RPG icon">
+        <img class="game-icon" src="images/srpg-128.png" alt="Simple RPG icon">
         <div class="game-header-text">
           <h3>Simple RPG</h3>
           <div class="sub">Idle Tap Adventure · Free</div>
@@ -582,7 +612,7 @@ footer .copy {
     <!-- Tap Wizard (Original) -->
     <div class="game-card">
       <div class="game-header">
-        <img class="game-icon" src="https://topcoggaming.com/wp-content/uploads/2021/08/tw-128_orig.png" alt="Tap Wizard icon">
+        <img class="game-icon" src="images/tw-128.png" alt="Tap Wizard icon">
         <div class="game-header-text">
           <h3>Tap Wizard</h3>
           <div class="sub">Idle Magic Quest · Free</div>
@@ -604,7 +634,7 @@ footer .copy {
     <!-- Ninja Prime -->
     <div class="game-card">
       <div class="game-header">
-        <img class="game-icon" src="https://topcoggaming.com/wp-content/uploads/2021/08/inp-128_orig.png" alt="Ninja Prime icon">
+        <img class="game-icon" src="images/inp-128.png" alt="Ninja Prime icon">
         <div class="game-header-text">
           <h3>Ninja Prime</h3>
           <div class="sub">Tap Quest · Free</div>
@@ -622,7 +652,7 @@ footer .copy {
     <!-- Idle Loot Quest -->
     <div class="game-card">
       <div class="game-header">
-        <img class="game-icon" src="https://topcoggaming.com/wp-content/uploads/2021/08/ilq-128_orig.png" alt="Idle Loot Quest icon">
+        <img class="game-icon" src="images/ilq-128.png" alt="Idle Loot Quest icon">
         <div class="game-header-text">
           <h3>Idle Loot Quest</h3>
           <div class="sub">Idle Clicker · Free</div>
@@ -640,7 +670,7 @@ footer .copy {
     <!-- Idle Brain Quest -->
     <div class="game-card">
       <div class="game-header">
-        <img class="game-icon" src="https://topcoggaming.com/wp-content/uploads/2021/08/ibq-128_orig.png" alt="Idle Brain Quest icon">
+        <img class="game-icon" src="images/ibq-128.png" alt="Idle Brain Quest icon">
         <div class="game-header-text">
           <h3>Idle Brain Quest</h3>
           <div class="sub">Idle Puzzle · Free</div>
@@ -658,7 +688,7 @@ footer .copy {
     <!-- Idle Quest -->
     <div class="game-card">
       <div class="game-header">
-        <img class="game-icon" src="https://topcoggaming.com/wp-content/uploads/2021/08/iq-128_orig.png" alt="Idle Quest icon">
+        <img class="game-icon" src="images/iq-128.png" alt="Idle Quest icon">
         <div class="game-header-text">
           <h3>Idle Quest</h3>
           <div class="sub">Idle Clicker · Free</div>
@@ -688,11 +718,70 @@ footer .copy {
   </div>
 </section>
 
+<!-- ===== ABOUT ===== -->
+<section class="about-section" id="about">
+  <h2 class="section-title">About</h2>
+  <div class="about-card">
+    <p><strong>TopCog</strong> is an indie game studio founded and run by <span class="highlight">Matthew Miskiewicz</span>. He handles everything — design, programming, art direction, publishing, and community.</p>
+    <p>Matt holds B.S. degrees in Computer Engineering and Electrical Engineering, plus a Ph.D. in Electrical Engineering. He's been programming since 2000 and has been running TopCog since 2014.</p>
+    <p>TopCog specializes in <strong>idle RPGs</strong>, <strong>incremental games</strong>, and <strong>action roguelites</strong> — games with deep systems, satisfying progression loops, and insane replayability. From the original Idle Quest to newer titles like Neon Spellstorm and Tap Wizard Realms, every game is built with a love for the genre and a commitment to quality.</p>
+    <div class="stats-row">
+      <div class="stat">
+        <div class="num">16</div>
+        <div class="label">Games Released</div>
+      </div>
+      <div class="stat">
+        <div class="num">10+</div>
+        <div class="label">Years of Development</div>
+      </div>
+      <div class="stat">
+        <div class="num">1</div>
+        <div class="label">Developer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact-section" id="contact">
+  <h2 class="section-title">Contact</h2>
+  <div class="contact-cards">
+    <a class="contact-card" href="mailto:topcogllc@gmail.com">
+      <div class="contact-icon email">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      </div>
+      <div class="contact-card-text">
+        <h3>Email</h3>
+        <p>topcogllc@gmail.com</p>
+      </div>
+    </a>
+    <a class="contact-card" href="https://discord.gg/nCh7RGxVTR" target="_blank" rel="noopener">
+      <div class="contact-icon discord">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.373-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419s.956-2.419 2.157-2.419c1.21 0 2.176 1.095 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419s.956-2.419 2.157-2.419c1.21 0 2.176 1.095 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+      </div>
+      <div class="contact-card-text">
+        <h3>Discord</h3>
+        <p>Join the community server</p>
+      </div>
+    </a>
+    <a class="contact-card" href="https://twitter.com/Top_Cog" target="_blank" rel="noopener">
+      <div class="contact-icon twitter">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </div>
+      <div class="contact-card-text">
+        <h3>X / Twitter</h3>
+        <p>@Top_Cog</p>
+      </div>
+    </a>
+  </div>
+</section>
+
 <!-- ===== FOOTER ===== -->
 <footer>
   <div class="foot-links">
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
+    <a href="#games">Games</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
     <a href="/privacy-policy-and-terms-of-service/">Privacy &amp; Terms</a>
   </div>
   <div class="copy">&copy; 2025 TopCog, LLC</div>
