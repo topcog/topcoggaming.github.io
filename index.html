@@ -227,6 +227,12 @@ nav {
   transform: translateY(-2px);
 }
 .store svg { width: 16px; height: 16px; flex-shrink: 0; }
+.changelog-trigger {
+  color: var(--accent-cyan);
+}
+.changelog-trigger:hover {
+  color: var(--text-primary);
+}
 
 /* ========== GAME CARDS ========== */
 .game-grid {
@@ -416,6 +422,118 @@ footer .copy {
   color: var(--text-muted); font-size: 0.8rem;
 }
 
+/* ========== CHANGELOG MODAL ========== */
+body.modal-open {
+  overflow: hidden;
+}
+.changelog-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(15, 14, 23, 0.76);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.changelog-modal.open {
+  display: flex;
+}
+.changelog-dialog {
+  width: min(760px, 100%);
+  max-height: min(760px, calc(100vh - 48px));
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.45);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  overflow: hidden;
+}
+.changelog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.changelog-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+.changelog-close {
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.06);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.changelog-close:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--text-primary);
+}
+.changelog-list {
+  min-height: 280px;
+  max-height: calc(100vh - 154px);
+  overflow-y: auto;
+  padding: 22px 24px 28px;
+}
+.changelog-entry {
+  display: grid;
+  gap: 8px;
+}
+.changelog-entry + .changelog-entry {
+  margin-top: 18px;
+}
+.changelog-date {
+  color: var(--accent-orange);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.changelog-body {
+  background: rgba(255,255,255,0.045);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  padding: 16px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.changelog-empty {
+  color: var(--text-muted);
+  padding: 24px 0;
+  text-align: center;
+}
+@media (max-width: 600px) {
+  .changelog-modal {
+    padding: 12px;
+  }
+  .changelog-dialog {
+    max-height: calc(100vh - 24px);
+  }
+  .changelog-header {
+    padding: 16px;
+  }
+  .changelog-list {
+    padding: 18px 16px 22px;
+    max-height: calc(100vh - 126px);
+  }
+}
+
 /* ========== SVG ICONS (inline) ========== */
 .icon-apple, .icon-google, .icon-steam, .icon-amazon, .icon-discord { display: inline-flex; }
 </style>
@@ -458,7 +576,7 @@ footer .copy {
 <section class="section" id="games">
 
   <!-- ── FEATURED: Tap Wizard Realms ── -->
-  <div class="featured">
+  <div class="featured" data-game-id="tap-wizard-realms" data-game-title="Tap Wizard Realms">
     <div class="featured-screens">
       <!-- TODO: Replace these with Tap Wizard Realms screenshots -->
       <img src="images/twr-screenshot-1.png" alt="Tap Wizard Realms screenshot 1" loading="lazy">
@@ -491,7 +609,7 @@ footer .copy {
   <div class="game-grid">
 
     <!-- Neon Spellstorm (2025) -->
-    <div class="game-card">
+    <div class="game-card" data-game-id="neon-spellstorm" data-game-title="Neon Spellstorm">
       <div class="game-header">
         <img class="game-icon" src="images/neonspellstorm-128.jpg" alt="Neon Spellstorm icon">
         <div class="game-header-text">
@@ -517,7 +635,7 @@ footer .copy {
     </div>
 
     <!-- Tap Wizard 2 (2021) -->
-    <div class="game-card">
+    <div class="game-card" data-game-id="tap-wizard-2" data-game-title="Tap Wizard 2">
       <div class="game-header">
         <img class="game-icon" src="images/tw2-128.jpg" alt="Tap Wizard 2 icon">
         <div class="game-header-text">
@@ -547,7 +665,7 @@ footer .copy {
     </div>
 
     <!-- WizUp! (2024) -->
-    <div class="game-card">
+    <div class="game-card" data-game-id="wizup" data-game-title="WizUp!">
       <div class="game-header">
         <img class="game-icon" src="images/wizup-128.jpg" alt="WizUp! icon">
         <div class="game-header-text">
@@ -569,7 +687,7 @@ footer .copy {
     </div>
 
     <!-- Grim RPG -->
-    <div class="game-card">
+    <div class="game-card" data-game-id="grim-rpg" data-game-title="Grim RPG">
       <div class="game-header">
         <img class="game-icon" src="images/grim-128.png" alt="Grim RPG icon">
         <div class="game-header-text">
@@ -587,7 +705,7 @@ footer .copy {
     </div>
 
     <!-- Simple RPG -->
-    <div class="game-card">
+    <div class="game-card" data-game-id="simple-rpg" data-game-title="Simple RPG">
       <div class="game-header">
         <img class="game-icon" src="images/srpg-128.png" alt="Simple RPG icon">
         <div class="game-header-text">
@@ -609,7 +727,7 @@ footer .copy {
     </div>
 
     <!-- Tap Wizard (Original) -->
-    <div class="game-card">
+    <div class="game-card" data-game-id="tap-wizard" data-game-title="Tap Wizard">
       <div class="game-header">
         <img class="game-icon" src="images/tw-128.png" alt="Tap Wizard icon">
         <div class="game-header-text">
@@ -631,7 +749,7 @@ footer .copy {
     </div>
 
     <!-- Ninja Prime -->
-    <div class="game-card">
+    <div class="game-card" data-game-id="ninja-prime" data-game-title="Ninja Prime">
       <div class="game-header">
         <img class="game-icon" src="images/inp-128.png" alt="Ninja Prime icon">
         <div class="game-header-text">
@@ -649,7 +767,7 @@ footer .copy {
     </div>
 
     <!-- Idle Loot Quest -->
-    <div class="game-card">
+    <div class="game-card" data-game-id="idle-loot-quest" data-game-title="Idle Loot Quest">
       <div class="game-header">
         <img class="game-icon" src="images/ilq-128.png" alt="Idle Loot Quest icon">
         <div class="game-header-text">
@@ -667,7 +785,7 @@ footer .copy {
     </div>
 
     <!-- Idle Brain Quest -->
-    <div class="game-card">
+    <div class="game-card" data-game-id="idle-brain-quest" data-game-title="Idle Brain Quest">
       <div class="game-header">
         <img class="game-icon" src="images/ibq-128.png" alt="Idle Brain Quest icon">
         <div class="game-header-text">
@@ -685,7 +803,7 @@ footer .copy {
     </div>
 
     <!-- Idle Quest -->
-    <div class="game-card">
+    <div class="game-card" data-game-id="idle-quest" data-game-title="Idle Quest">
       <div class="game-header">
         <img class="game-icon" src="images/iq-128.png" alt="Idle Quest icon">
         <div class="game-header-text">
@@ -785,6 +903,116 @@ footer .copy {
   </div>
   <div class="copy">&copy; 2025 TopCog, LLC</div>
 </footer>
+
+<div class="changelog-modal" data-changelog-modal aria-hidden="true">
+  <div class="changelog-dialog" role="dialog" aria-modal="true" aria-labelledby="changelog-title">
+    <div class="changelog-header">
+      <h2 class="changelog-title" id="changelog-title">Changelog</h2>
+      <button class="changelog-close" type="button" data-changelog-close aria-label="Close changelog">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+    <div class="changelog-list" data-changelog-list tabindex="0"></div>
+  </div>
+</div>
+
+<script src="data/changelogs.js"></script>
+<script>
+(() => {
+  const changelogs = window.TOPCOG_CHANGELOGS || {};
+  const modal = document.querySelector('[data-changelog-modal]');
+  const title = document.getElementById('changelog-title');
+  const list = document.querySelector('[data-changelog-list]');
+  const closeButton = document.querySelector('[data-changelog-close]');
+  let lastTrigger = null;
+
+  const sortEntries = (entries) => [...entries].sort((a, b) => {
+    const left = Date.parse(a.date || '');
+    const right = Date.parse(b.date || '');
+    return (Number.isNaN(left) ? 0 : left) - (Number.isNaN(right) ? 0 : right);
+  });
+
+  const renderEntries = (entries) => {
+    list.innerHTML = '';
+    if (!entries.length) {
+      const empty = document.createElement('p');
+      empty.className = 'changelog-empty';
+      empty.textContent = 'No changelog entries yet.';
+      list.append(empty);
+      return;
+    }
+
+    sortEntries(entries).forEach((entry) => {
+      const item = document.createElement('article');
+      item.className = 'changelog-entry';
+
+      const date = document.createElement('div');
+      date.className = 'changelog-date';
+      date.textContent = entry.displayDate || entry.date || 'Release note';
+
+      const body = document.createElement('div');
+      body.className = 'changelog-body';
+      body.textContent = entry.body || '';
+
+      item.append(date, body);
+      list.append(item);
+    });
+  };
+
+  const openChangelog = (game, trigger) => {
+    lastTrigger = trigger;
+    title.textContent = `${game.title} Changelog`;
+    renderEntries(game.entries);
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    requestAnimationFrame(() => {
+      list.scrollTop = list.scrollHeight;
+      closeButton.focus();
+    });
+  };
+
+  const closeChangelog = () => {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+    if (lastTrigger) {
+      lastTrigger.focus();
+    }
+  };
+
+  document.querySelectorAll('[data-game-id]').forEach((gameEl) => {
+    const id = gameEl.dataset.gameId;
+    const entries = Array.isArray(changelogs[id]) ? changelogs[id] : [];
+    if (!entries.length) return;
+
+    const stores = gameEl.querySelector('.stores');
+    if (!stores) return;
+
+    const button = document.createElement('button');
+    button.className = 'store changelog-trigger';
+    button.type = 'button';
+    button.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8v5l3 3"/><path d="M3.05 11a9 9 0 1 1 2.12 6.36"/><path d="M3 17v-6h6"/></svg><span>Changelog</span>';
+    button.addEventListener('click', () => {
+      openChangelog({
+        title: gameEl.dataset.gameTitle || 'Game',
+        entries
+      }, button);
+    });
+    stores.append(button);
+  });
+
+  closeButton.addEventListener('click', closeChangelog);
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) closeChangelog();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modal.classList.contains('open')) {
+      closeChangelog();
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
