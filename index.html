@@ -226,6 +226,13 @@ nav {
   border-color: rgba(255,255,255,0.14);
   transform: translateY(-2px);
 }
+.store-disabled,
+.store-disabled:hover {
+  color: var(--text-muted);
+  cursor: default;
+  opacity: 0.7;
+  transform: none;
+}
 .store svg { width: 16px; height: 16px; flex-shrink: 0; }
 .changelog-trigger {
   color: var(--accent-cyan);
@@ -608,6 +615,24 @@ body.modal-open {
   <!-- ── GAME GRID ── -->
   <div class="game-grid">
 
+    <!-- Archmage Idle (2026) -->
+    <div class="game-card" data-game-id="archmage-idle" data-game-title="Archmage Idle">
+      <div class="game-header">
+        <img class="game-icon" src="images/archmageidle-128.png" alt="Archmage Idle icon">
+        <div class="game-header-text">
+          <h3>Archmage Idle <span class="tag tag-new">Latest</span></h3>
+          <div class="sub">Idle RPG · 2026 · Free</div>
+        </div>
+      </div>
+      <p>Build a magical guild where combat, crafting, research, summoning, and wizard training keep progressing in parallel. Assign wizards, collect hundreds of items, and stack intertwined idle systems into an ever-growing arcane machine.</p>
+      <div class="stores">
+        <a class="store store-disabled" href="#" aria-disabled="true" onclick="return false;">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store Soon
+        </a>
+      </div>
+    </div>
+
     <!-- Neon Spellstorm (2025) -->
     <div class="game-card" data-game-id="neon-spellstorm" data-game-title="Neon Spellstorm">
       <div class="game-header">
@@ -760,24 +785,6 @@ body.modal-open {
       <p>A tap-driven action quest where your ninja battles through waves of enemies. Quick sessions, satisfying progression, and flashy combat abilities.</p>
       <div class="stores">
         <a class="store" href="https://apps.apple.com/us/app/ninja-prime-tap-quest/id1471002445" target="_blank">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-          App Store
-        </a>
-      </div>
-    </div>
-
-    <!-- Idle Loot Quest -->
-    <div class="game-card" data-game-id="idle-loot-quest" data-game-title="Idle Loot Quest">
-      <div class="game-header">
-        <img class="game-icon" src="images/ilq-128.png" alt="Idle Loot Quest icon">
-        <div class="game-header-text">
-          <h3>Idle Loot Quest</h3>
-          <div class="sub">Idle Clicker · Free</div>
-        </div>
-      </div>
-      <p>An idle clicker focused on loot collection and incremental progression. Watch your hero grow stronger while you're away and come back to mountains of rewards.</p>
-      <div class="stores">
-        <a class="store" href="https://apps.apple.com/us/app/idle-loot-quest/id1073634515" target="_blank">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
           App Store
         </a>
