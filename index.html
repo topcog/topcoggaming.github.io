@@ -167,7 +167,7 @@ nav {
   font-weight: 700; margin-bottom: 32px;
 }
 
-/* ========== FEATURED (TAP WIZARD REALMS) ========== */
+/* ========== FEATURED ========== */
 .featured {
   display: grid; grid-template-columns: 1.1fr 1fr;
   gap: 48px; align-items: center;
@@ -204,7 +204,7 @@ nav {
 
 @media (max-width: 860px) {
   .featured { grid-template-columns: 1fr; padding: 28px; gap: 28px; }
-  .featured-screens { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .featured-screens { grid-template-columns: repeat(2, 1fr); gap: 8px; }
 }
 
 /* ========== STORE BADGES ========== */
@@ -582,44 +582,15 @@ body.modal-open {
 <!-- ===== ALL GAMES ===== -->
 <section class="section" id="games">
 
-  <!-- ── FEATURED: Tap Wizard Realms ── -->
-  <div class="featured" data-game-id="tap-wizard-realms" data-game-title="Tap Wizard Realms">
+  <!-- ── FEATURED: Archmage Idle ── -->
+  <div class="featured" data-game-id="archmage-idle" data-game-title="Archmage Idle">
     <div class="featured-screens">
-      <!-- TODO: Replace these with Tap Wizard Realms screenshots -->
-      <img src="images/twr-screenshot-1.png" alt="Tap Wizard Realms screenshot 1" loading="lazy">
-      <img src="images/twr-screenshot-2.png" alt="Tap Wizard Realms screenshot 2" loading="lazy">
-      <img src="images/twr-screenshot-3.png" alt="Tap Wizard Realms screenshot 3" loading="lazy">
-      <img src="images/twr-screenshot-4.png" alt="Tap Wizard Realms screenshot 4" loading="lazy">
+      <img src="images/archmageidle-screenshot-1.png" alt="Archmage Idle mobile screenshot 1" loading="lazy">
+      <img src="images/archmageidle-screenshot-2.png" alt="Archmage Idle mobile screenshot 2" loading="lazy">
     </div>
     <div class="featured-body">
-      <h3>Tap Wizard Realms <span class="tag tag-new">New</span></h3>
-      <div class="tagline">Idle RPG · 2025 · Free</div>
-      <p>Tap Wizard is back! Your wizard casts magic and battles monsters 24/7, even while you're AFK. Arrange 42 unique spells on the Spell Grid, discover roguelite Glyphs that make every run unique, and prestige through the Chrono Engine for massive permanent upgrades. Explore 60+ locations across 10 chapters in this endless idle RPG.</p>
-      <div class="stores">
-        <a class="store" href="https://apps.apple.com/us/app/tap-wizard-realms/id6757723385" target="_blank">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-          App Store
-        </a>
-        <a class="store" href="https://play.google.com/store/apps/details?id=com.topcog.tapwizardrealms" target="_blank">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.807 1.626a1 1 0 0 1 0 1.732l-2.808 1.626L15.206 12l2.492-2.492zM5.864 2.658L16.8 8.99l-2.3 2.3-8.636-8.632z"/></svg>
-          Google Play
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── GAME GRID ── -->
-  <div class="game-grid">
-
-    <!-- Archmage Idle (2026) -->
-    <div class="game-card" data-game-id="archmage-idle" data-game-title="Archmage Idle">
-      <div class="game-header">
-        <img class="game-icon" src="images/archmageidle-128.png" alt="Archmage Idle icon">
-        <div class="game-header-text">
-          <h3>Archmage Idle <span class="tag tag-new">Latest</span></h3>
-          <div class="sub">Incremental · 2026 · Free</div>
-        </div>
-      </div>
+      <h3>Archmage Idle <span class="tag tag-new">Latest</span></h3>
+      <div class="tagline">Incremental RPG · 2026 · Free</div>
       <p>Build a magical guild where combat, crafting, research, summoning, and wizard training keep progressing in parallel. Assign wizards, collect hundreds of items, and stack intertwined idle systems into an ever-growing arcane machine.</p>
       <div class="stores">
         <a class="store" href="https://play.google.com/store/apps/details?id=com.topcog.archmageidle" target="_blank">
@@ -630,10 +601,36 @@ body.modal-open {
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
           App Store Soon
         </span>
-        <span class="store store-disabled" aria-disabled="true">
+        <a class="store" href="https://store.steampowered.com/app/4557350/Archmage_Idle/?utm_source=tcwebsite" target="_blank">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0z"/></svg>
-          Steam Soon
-        </span>
+          Steam
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── GAME GRID ── -->
+  <div class="game-grid">
+
+    <!-- Tap Wizard Realms (2025) -->
+    <div class="game-card" data-game-id="tap-wizard-realms" data-game-title="Tap Wizard Realms">
+      <div class="game-header">
+        <img class="game-icon" src="images/twr-128.jpg" alt="Tap Wizard Realms icon">
+        <div class="game-header-text">
+          <h3>Tap Wizard Realms <span class="tag tag-new">New</span></h3>
+          <div class="sub">Idle RPG · 2025 · Free</div>
+        </div>
+      </div>
+      <p>Tap Wizard is back! Arrange 42 unique spells on the Spell Grid, discover roguelite Glyphs that make every run unique, and prestige through the Chrono Engine for massive permanent upgrades.</p>
+      <div class="stores">
+        <a class="store" href="https://apps.apple.com/us/app/tap-wizard-realms/id6757723385" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store
+        </a>
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.topcog.tapwizardrealms" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.807 1.626a1 1 0 0 1 0 1.732l-2.808 1.626L15.206 12l2.492-2.492zM5.864 2.658L16.8 8.99l-2.3 2.3-8.636-8.632z"/></svg>
+          Google Play
+        </a>
       </div>
     </div>
 
