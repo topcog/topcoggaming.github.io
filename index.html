@@ -583,7 +583,7 @@ body.modal-open {
 <section class="section" id="games">
 
   <!-- ── FEATURED: Archmage Idle ── -->
-  <div class="featured" data-game-id="archmage-idle" data-game-title="Archmage Idle">
+  <div class="featured" data-game-id="archmage-idle" data-game-title="Archmage Idle" data-changelog-placeholder="true" data-changelog-label="Change Notes" data-changelog-empty="No change notes yet.">
     <div class="featured-screens">
       <img src="images/archmageidle-playstore-screenshot-1.png" alt="Archmage Idle mobile screenshot 1" loading="lazy">
       <img src="images/archmageidle-playstore-screenshot-2.png" alt="Archmage Idle mobile screenshot 2" loading="lazy">
@@ -940,12 +940,12 @@ body.modal-open {
     return (Number.isNaN(left) ? 0 : left) - (Number.isNaN(right) ? 0 : right);
   });
 
-  const renderEntries = (entries) => {
+  const renderEntries = (entries, emptyMessage = 'No changelog entries yet.') => {
     list.innerHTML = '';
     if (!entries.length) {
       const empty = document.createElement('p');
       empty.className = 'changelog-empty';
-      empty.textContent = 'No changelog entries yet.';
+      empty.textContent = emptyMessage;
       list.append(empty);
       return;
     }
@@ -969,8 +969,8 @@ body.modal-open {
 
   const openChangelog = (game, trigger) => {
     lastTrigger = trigger;
-    title.textContent = `${game.title} Changelog`;
-    renderEntries(game.entries);
+    title.textContent = `${game.title} ${game.label}`;
+    renderEntries(game.entries, game.emptyMessage);
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal-open');
@@ -992,19 +992,26 @@ body.modal-open {
   document.querySelectorAll('[data-game-id]').forEach((gameEl) => {
     const id = gameEl.dataset.gameId;
     const entries = Array.isArray(changelogs[id]) ? changelogs[id] : [];
-    if (!entries.length) return;
+    const hasPlaceholder = gameEl.dataset.changelogPlaceholder === 'true';
+    if (!entries.length && !hasPlaceholder) return;
 
     const stores = gameEl.querySelector('.stores');
     if (!stores) return;
 
+    const label = gameEl.dataset.changelogLabel || 'Changelog';
     const button = document.createElement('button');
     button.className = 'store changelog-trigger';
     button.type = 'button';
-    button.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8v5l3 3"/><path d="M3.05 11a9 9 0 1 1 2.12 6.36"/><path d="M3 17v-6h6"/></svg><span>Changelog</span>';
+    button.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8v5l3 3"/><path d="M3.05 11a9 9 0 1 1 2.12 6.36"/><path d="M3 17v-6h6"/></svg>';
+    const labelText = document.createElement('span');
+    labelText.textContent = label;
+    button.append(labelText);
     button.addEventListener('click', () => {
       openChangelog({
         title: gameEl.dataset.gameTitle || 'Game',
-        entries
+        entries,
+        label,
+        emptyMessage: gameEl.dataset.changelogEmpty || 'No changelog entries yet.'
       }, button);
     });
     stores.append(button);
