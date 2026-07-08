@@ -937,7 +937,7 @@ body.modal-open {
   const sortEntries = (entries) => [...entries].sort((a, b) => {
     const left = Date.parse(a.date || '');
     const right = Date.parse(b.date || '');
-    return (Number.isNaN(left) ? 0 : left) - (Number.isNaN(right) ? 0 : right);
+    return (Number.isNaN(right) ? 0 : right) - (Number.isNaN(left) ? 0 : left);
   });
 
   const renderEntries = (entries, emptyMessage = 'No changelog entries yet.') => {
@@ -975,7 +975,7 @@ body.modal-open {
     modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal-open');
     requestAnimationFrame(() => {
-      list.scrollTop = list.scrollHeight;
+      list.scrollTop = 0;
       closeButton.focus();
     });
   };
