@@ -1,6 +1,11 @@
 window.TOPCOG_CHANGELOGS = {
   "archmage-idle": [
     {
+      "date": "2026-07-24T12:00:00.000Z",
+      "displayDate": "July 24, 2026",
+      "body": "v1.3.3\n\nWhat's New in 1.3.3!\n- The Runic Cauldron has been rebalanced again, with smoother Hearth and Crucible input energy progression and more sustainable fuel usage.\n\nAdditional Patch Notes\n- Fixed Cloud Sync so loading a cloud save immediately grants the offline progress accumulated since that save.\n- Fixed the Runic Cauldron consuming Hearth and Crucible items much faster than the displayed rate.\n\nThanks for playing! Please don't hesitate to reach out if you have any problems!"
+    },
+    {
       "date": "2026-07-22T12:00:00.000Z",
       "displayDate": "July 22, 2026",
       "body": "v1.3.2\n\nWhat's New in 1.3.2!\n- Improved Runic Cauldron performance when the Crucible consumes low-level potions, reducing frame drops while producing potions.\n- Improved Bazaar performance during Liquidation sales by batching item removals and avoiding repeated full-inventory scans.\n- Fixed Echoes repeating compressed actions without their Action Compression multiplier, and added the missing compression breakdown to Meditation's Explore tooltip.\n- Fixed combat-sourced Alchemy, Sigilry, and Guild Quest requirements scaling far too high in later NG+ runs without changing Standard or Turbo new-game balance.\n- Fixed the reduced Skill Point cost for Skill Level 100 incorrectly changing when Level 100 milestone bonuses were included in Par calculations.\n- Fixed the Academy's Self-Study Cycle Speed display not updating as momentum built or decayed between lectures.\n- Added a one-time tutorial explaining how to craft and equip Aspects when entering your first dungeon without one equipped.\n- Enlarged the desktop Diplomacy and Scavenging maps and prevented their height from changing when selecting different locations.\n- Fixed Shop gold icons shifting out of position when selecting larger item quantities, and added a 100K bulk-buy option.\n\nThanks for playing! Please don't hesitate to reach out if you have any problems!"

@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TopCog – Indie Game Studio</title>
+<link rel="icon" type="image/png" href="/images/archmageidle-128.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -240,12 +241,19 @@ nav {
 .changelog-trigger:hover {
   color: var(--text-primary);
 }
+.codes-trigger {
+  color: #c084fc;
+}
+.codes-trigger:hover {
+  color: var(--text-primary);
+}
 
 /* ========== GAME CARDS ========== */
 .game-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 16px;
+  align-items: start;
 }
 @media (max-width: 500px) {
   .game-grid { grid-template-columns: 1fr; }
@@ -253,7 +261,7 @@ nav {
 .game-card {
   background: var(--bg-card);
   border: 1px solid rgba(255,255,255,0.05);
-  border-radius: var(--radius); padding: 26px;
+  border-radius: var(--radius); padding: 20px;
   display: flex; flex-direction: column;
   transition: all 0.3s;
 }
@@ -264,12 +272,12 @@ nav {
   box-shadow: 0 16px 40px rgba(0,0,0,0.25);
 }
 .game-header {
-  display: flex; align-items: center; gap: 14px;
-  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 10px;
 }
 .game-icon {
-  width: 60px; height: 60px;
-  border-radius: 14px; object-fit: cover; flex-shrink: 0;
+  width: 52px; height: 52px;
+  border-radius: 12px; object-fit: cover; flex-shrink: 0;
   background: var(--bg-deep);
 }
 .game-header-text h3 {
@@ -294,9 +302,10 @@ nav {
 
 .game-card p {
   color: var(--text-secondary); font-size: 0.88rem;
-  margin-bottom: 18px; flex: 1; line-height: 1.6;
+  margin-bottom: 12px; line-height: 1.5;
 }
 .game-card .stores { margin-top: auto; }
+.game-card .store { padding: 7px 11px; }
 
 /* ========== DISCORD CTA ========== */
 .discord-section {
@@ -525,6 +534,142 @@ body.modal-open {
   padding: 24px 0;
   text-align: center;
 }
+.codes-dialog {
+  width: min(820px, 100%);
+}
+.codes-list {
+  display: grid;
+  gap: 16px;
+}
+.codes-intro {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  padding: 0 2px 4px;
+}
+.codes-intro strong {
+  color: var(--text-primary);
+}
+.code-entry {
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.075);
+  border-radius: 14px;
+  padding: 18px;
+}
+.code-entry-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.code-entry-date {
+  color: var(--accent-orange);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.code-status {
+  border-radius: 100px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 3px 9px;
+  text-transform: uppercase;
+}
+.code-status-evergreen,
+.code-status-active {
+  background: rgba(52,211,153,0.12);
+  color: var(--accent-green);
+}
+.code-status-expired {
+  background: rgba(107,109,128,0.15);
+  color: var(--text-muted);
+}
+.code-announcement {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+.code-riddle {
+  background: rgba(15,14,23,0.48);
+  border-left: 3px solid rgba(168,85,247,0.7);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--text-primary);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  margin-bottom: 14px;
+  padding: 14px 16px;
+  white-space: pre-wrap;
+}
+.code-reveals {
+  display: grid;
+  gap: 8px;
+}
+.code-reveal {
+  background: rgba(168,85,247,0.075);
+  border: 1px solid rgba(168,85,247,0.18);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+}
+.code-reveal-label {
+  color: #c084fc;
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+.code-reveal-text {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+.code-value-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.code-value {
+  color: var(--text-primary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+.code-reveal-button,
+.code-copy-button {
+  border: 1px solid rgba(168,85,247,0.26);
+  border-radius: 8px;
+  background: rgba(168,85,247,0.12);
+  color: #d8b4fe;
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 8px 12px;
+  transition: all 0.2s;
+}
+.code-reveal-button {
+  margin-top: 10px;
+}
+.code-reveal-button:hover,
+.code-copy-button:hover {
+  background: rgba(168,85,247,0.2);
+  border-color: rgba(168,85,247,0.4);
+  color: var(--text-primary);
+}
+.code-note {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-style: italic;
+  line-height: 1.5;
+  margin-top: 10px;
+}
 @media (max-width: 600px) {
   .changelog-modal {
     padding: 12px;
@@ -538,6 +683,13 @@ body.modal-open {
   .changelog-list {
     padding: 18px 16px 22px;
     max-height: calc(100vh - 126px);
+  }
+  .code-entry {
+    padding: 15px;
+  }
+  .code-value-row {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
 
@@ -612,6 +764,36 @@ body.modal-open {
   <!-- ── GAME GRID ── -->
   <div class="game-grid">
 
+    <!-- Tap Wizard 2 (2021) -->
+    <div class="game-card" data-game-id="tap-wizard-2" data-game-title="Tap Wizard 2">
+      <div class="game-header">
+        <img class="game-icon" src="images/tw2-128.jpg" alt="Tap Wizard 2 icon">
+        <div class="game-header-text">
+          <h3>Tap Wizard 2 <span class="tag tag-popular">Popular</span></h3>
+          <div class="sub">Idle RPG · 2021 · Free</div>
+        </div>
+      </div>
+      <p>A fusion of Idle, Incremental, ARPG, and Twin-Stick Shooter genres. Choose your Spells, Perks, and Traits, then let the Wizard do the work. Multiple prestige systems and an active community.</p>
+      <div class="stores">
+        <a class="store" href="https://apps.apple.com/us/app/tap-wizard-2-idle-magic-game/id1596750535" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store
+        </a>
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.topcog.tapwizard2" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.807 1.626a1 1 0 0 1 0 1.732l-2.808 1.626L15.206 12l2.492-2.492zM5.864 2.658L16.8 8.99l-2.3 2.3-8.636-8.632z"/></svg>
+          Google Play
+        </a>
+        <a class="store" href="https://store.steampowered.com/app/1836550/Tap_Wizard_2/" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0z"/></svg>
+          Steam
+        </a>
+        <a class="store" href="https://www.amazon.com/Tap-Wizard-Idle-Magic-Quest/dp/B09MJDCTLZ/" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.064 2.729 1.396 5.715 2.095 8.958 2.095 2.197 0 4.395-.395 6.593-1.186.328-.116.607-.064.837.157.164.148.225.348.195.601-.031.253-.143.42-.337.503-2.197.841-4.556 1.261-7.076 1.261-3.405 0-6.555-.745-9.449-2.236-.18-.093-.27-.238-.069-.131zm12.211-4.327c-.148.246-.38.319-.694.222a7.04 7.04 0 0 0-2.564-.445c-.844 0-1.633.135-2.37.408-.246.09-.463.09-.652-.004-.188-.093-.283-.256-.283-.489 0-.222.09-.381.27-.478a7.688 7.688 0 0 1 3.162-.64c1.13 0 2.14.198 3.028.593.152.067.245.178.283.334.037.156-.03.312-.18.5z"/></svg>
+          Amazon
+        </a>
+      </div>
+    </div>
+
     <!-- Tap Wizard Realms (2025) -->
     <div class="game-card" data-game-id="tap-wizard-realms" data-game-title="Tap Wizard Realms">
       <div class="game-header">
@@ -656,36 +838,6 @@ body.modal-open {
         <a class="store" href="https://play.google.com/store/apps/details?id=com.topcog.neonspellstorm" target="_blank">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.807 1.626a1 1 0 0 1 0 1.732l-2.808 1.626L15.206 12l2.492-2.492zM5.864 2.658L16.8 8.99l-2.3 2.3-8.636-8.632z"/></svg>
           Google Play
-        </a>
-      </div>
-    </div>
-
-    <!-- Tap Wizard 2 (2021) -->
-    <div class="game-card" data-game-id="tap-wizard-2" data-game-title="Tap Wizard 2">
-      <div class="game-header">
-        <img class="game-icon" src="images/tw2-128.jpg" alt="Tap Wizard 2 icon">
-        <div class="game-header-text">
-          <h3>Tap Wizard 2 <span class="tag tag-popular">Popular</span></h3>
-          <div class="sub">Idle RPG · 2021 · Free</div>
-        </div>
-      </div>
-      <p>A fusion of Idle, Incremental, ARPG, and Twin-Stick Shooter genres. Choose your Spells, Perks, and Traits, then let the Wizard do the work. Multiple prestige systems and an active community.</p>
-      <div class="stores">
-        <a class="store" href="https://apps.apple.com/us/app/tap-wizard-2-idle-magic-game/id1596750535" target="_blank">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-          App Store
-        </a>
-        <a class="store" href="https://play.google.com/store/apps/details?id=com.topcog.tapwizard2" target="_blank">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.807 1.626a1 1 0 0 1 0 1.732l-2.808 1.626L15.206 12l2.492-2.492zM5.864 2.658L16.8 8.99l-2.3 2.3-8.636-8.632z"/></svg>
-          Google Play
-        </a>
-        <a class="store" href="https://store.steampowered.com/app/1836550/Tap_Wizard_2/" target="_blank">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0z"/></svg>
-          Steam
-        </a>
-        <a class="store" href="https://www.amazon.com/Tap-Wizard-Idle-Magic-Quest/dp/B09MJDCTLZ/" target="_blank">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.064 2.729 1.396 5.715 2.095 8.958 2.095 2.197 0 4.395-.395 6.593-1.186.328-.116.607-.064.837.157.164.148.225.348.195.601-.031.253-.143.42-.337.503-2.197.841-4.556 1.261-7.076 1.261-3.405 0-6.555-.745-9.449-2.236-.18-.093-.27-.238-.069-.131zm12.211-4.327c-.148.246-.38.319-.694.222a7.04 7.04 0 0 0-2.564-.445c-.844 0-1.633.135-2.37.408-.246.09-.463.09-.652-.004-.188-.093-.283-.256-.283-.489 0-.222.09-.381.27-.478a7.688 7.688 0 0 1 3.162-.64c1.13 0 2.14.198 3.028.593.152.067.245.178.283.334.037.156-.03.312-.18.5z"/></svg>
-          Amazon
         </a>
       </div>
     </div>
@@ -924,7 +1076,19 @@ body.modal-open {
   </div>
 </div>
 
-<script src="data/changelogs.js?v=1.2.11"></script>
+<div class="changelog-modal" data-codes-modal aria-hidden="true">
+  <div class="changelog-dialog codes-dialog" role="dialog" aria-modal="true" aria-labelledby="codes-title" aria-describedby="codes-intro">
+    <div class="changelog-header">
+      <h2 class="changelog-title" id="codes-title">Codes for Tap Wizard 2</h2>
+      <button class="changelog-close" type="button" data-codes-close aria-label="Close Tap Wizard 2 codes">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+    <div class="changelog-list codes-list" data-codes-list tabindex="0"></div>
+  </div>
+</div>
+
+<script src="data/changelogs.js?v=1.3.3"></script>
 <script>
 (() => {
   const changelogs = window.TOPCOG_CHANGELOGS || {};
@@ -1025,6 +1189,166 @@ body.modal-open {
     if (event.key === 'Escape' && modal.classList.contains('open')) {
       closeChangelog();
     }
+  });
+})();
+</script>
+<script src="data/tap-wizard-2-codes.js?v=1.0.0"></script>
+<script>
+(() => {
+  const entries = Array.isArray(window.TOPCOG_TAP_WIZARD_2_CODES)
+    ? window.TOPCOG_TAP_WIZARD_2_CODES
+    : [];
+  const modal = document.querySelector('[data-codes-modal]');
+  const list = document.querySelector('[data-codes-list]');
+  const closeButton = document.querySelector('[data-codes-close]');
+  const game = document.querySelector('[data-game-id="tap-wizard-2"]');
+  let lastTrigger = null;
+
+  if (!modal || !list || !closeButton || !game) return;
+
+  const statusLabels = {
+    active: 'Active',
+    evergreen: 'Evergreen',
+    expired: 'Expired'
+  };
+
+  const makeText = (tag, className, text) => {
+    const element = document.createElement(tag);
+    element.className = className;
+    element.textContent = text;
+    return element;
+  };
+
+  const copyCode = async (code, button) => {
+    try {
+      await navigator.clipboard.writeText(code);
+      button.textContent = 'Copied!';
+      window.setTimeout(() => { button.textContent = 'Copy'; }, 1400);
+    } catch (error) {
+      button.textContent = 'Select to copy';
+    }
+  };
+
+  const renderEntries = () => {
+    list.innerHTML = '';
+
+    const intro = document.createElement('p');
+    intro.className = 'codes-intro';
+    intro.id = 'codes-intro';
+    intro.innerHTML = '<strong>Solve at your own pace.</strong> Reveal hints one at a time, then reveal the exact code. Enter codes in the Vault with the spelling and punctuation shown.';
+    list.append(intro);
+
+    [...entries]
+      .sort((a, b) => Date.parse(b.date || '') - Date.parse(a.date || ''))
+      .forEach((entry) => {
+        const article = document.createElement('article');
+        article.className = 'code-entry';
+
+        const meta = document.createElement('div');
+        meta.className = 'code-entry-meta';
+        meta.append(makeText('div', 'code-entry-date', entry.displayDate || entry.date || 'Code'));
+
+        const status = entry.status || 'expired';
+        meta.append(makeText('span', `code-status code-status-${status}`, statusLabels[status] || status));
+        article.append(meta);
+
+        if (entry.announcement) {
+          article.append(makeText('p', 'code-announcement', entry.announcement));
+        }
+        if (entry.riddle) {
+          article.append(makeText('div', 'code-riddle', entry.riddle));
+        }
+
+        const reveals = document.createElement('div');
+        reveals.className = 'code-reveals';
+        reveals.setAttribute('aria-live', 'polite');
+        article.append(reveals);
+
+        const stages = (entry.hints || []).map((hint, index) => ({
+          label: `Hint ${index + 1}`,
+          text: hint,
+          isCode: false
+        }));
+        stages.push({ label: 'Code', text: entry.code, isCode: true });
+
+        let stageIndex = 0;
+        const revealButton = makeText(
+          'button',
+          'code-reveal-button',
+          stages[0].isCode ? 'Show code' : 'Show hint 1'
+        );
+        revealButton.type = 'button';
+        revealButton.addEventListener('click', () => {
+          const stage = stages[stageIndex];
+          const panel = document.createElement('div');
+          panel.className = 'code-reveal';
+          panel.append(makeText('span', 'code-reveal-label', stage.label));
+
+          if (stage.isCode) {
+            const valueRow = document.createElement('div');
+            valueRow.className = 'code-value-row';
+            valueRow.append(makeText('code', 'code-value', stage.text));
+            const copyButton = makeText('button', 'code-copy-button', 'Copy');
+            copyButton.type = 'button';
+            copyButton.setAttribute('aria-label', `Copy code ${stage.text}`);
+            copyButton.addEventListener('click', () => copyCode(stage.text, copyButton));
+            valueRow.append(copyButton);
+            panel.append(valueRow);
+          } else {
+            panel.append(makeText('div', 'code-reveal-text', stage.text));
+          }
+
+          reveals.append(panel);
+          stageIndex += 1;
+
+          if (stageIndex >= stages.length) {
+            revealButton.remove();
+            if (entry.note) article.append(makeText('p', 'code-note', entry.note));
+          } else {
+            const next = stages[stageIndex];
+            revealButton.textContent = next.isCode ? 'Show code' : `Show hint ${stageIndex + 1}`;
+          }
+        });
+        article.append(revealButton);
+        list.append(article);
+      });
+  };
+
+  const openCodes = (trigger) => {
+    lastTrigger = trigger;
+    renderEntries();
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    requestAnimationFrame(() => {
+      list.scrollTop = 0;
+      closeButton.focus();
+    });
+  };
+
+  const closeCodes = () => {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+    if (lastTrigger) lastTrigger.focus();
+  };
+
+  const stores = game.querySelector('.stores');
+  if (stores) {
+    const trigger = document.createElement('button');
+    trigger.className = 'store codes-trigger';
+    trigger.type = 'button';
+    trigger.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m11 12 8.5-8.5 1 1-2 2 2 2-2 2-2-2-2 2"/></svg><span>Codes for Tap Wizard 2</span>';
+    trigger.addEventListener('click', () => openCodes(trigger));
+    stores.append(trigger);
+  }
+
+  closeButton.addEventListener('click', closeCodes);
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) closeCodes();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modal.classList.contains('open')) closeCodes();
   });
 })();
 </script>
