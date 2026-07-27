@@ -2,59 +2,65 @@ window.TOPCOG_TAP_WIZARD_2_CODES = [
   {
     date: "2025-07-10",
     displayDate: "July 10, 2025",
-    status: "expired",
+    status: "active",
     riddle: "You might wonder what’s beyond me,\nYou might look above or below me,\nYour gaze might follow my line.\nBut I appear nowhere in this game.\n\nWhat am I?",
     hints: [
       "...you can't see me because of the perspective of the Chrono Lord",
       "I’m a boundary you can see but never reach"
     ],
     code: "Horizon",
+    reward: "1 Magic Die",
     note: "Technically, it appears on one of the Rune icons (Daybreak), but that was discovered after the riddle was made."
   },
   {
     date: "2024-12-18",
     displayDate: "December 18, 2024",
-    status: "expired",
+    status: "active",
     announcement: "Merry Christmas! 😁 🎄",
-    code: "Christmas"
+    code: "Christmas!",
+    reward: "1 Magic Die"
   },
   {
     date: "2024-10-09T14:27:00",
     displayDate: "October 9, 2024 · Code 2",
-    status: "expired",
+    status: "active",
     riddle: "I am a keeper of secrets, though I never speak,\nI am a bridge to the past, for the curious and meek.\nI hold stories untold, with pages that turn,\nIn silence, I teach, and in stillness, I burn.\n\nWhat am I?",
     hints: [
       "I contain knowledge and adventures within my covers.",
       "You can visit many worlds, but I remain in one place."
     ],
-    code: "Book"
+    code: "Book",
+    reward: "1 Magic Die"
   },
   {
     date: "2024-10-09T14:26:00",
     displayDate: "October 9, 2024 · Code 1",
-    status: "expired",
+    status: "active",
     riddle: "I am movement;\nI am stillness,\nI am vast and confined,\nI am choice and I am chance,\nMy rhythm binds and breaks.\n\nWhat am I?",
     hints: [
       "I am present in every moment, yet I am elusive.",
       "Without me, growth or decay would cease."
     ],
-    code: "Time"
+    code: "Time",
+    reward: "100 Gems"
   },
   {
     date: "2024-08-02",
     displayDate: "August 2, 2024",
-    status: "expired",
+    status: "active",
     riddle: "I am change;\nI am creation,\nI am destruction;\nI am disaster,\nI am epiphany.\nMy father is luck,\nAnd my mother is providence.\n\nWhat am I?",
     hints: ["I am also unpredictable."],
-    code: "Chaos"
+    code: "Chaos",
+    reward: "1 Respec Token"
   },
   {
     date: "2024-06-04",
     displayDate: "June 4, 2024",
-    status: "expired",
+    status: "active",
     riddle: "Mystic inscriptions,\nWith powers untold:\nSpeed and shield,\nStatus and size,\nJust a glimpse,\nOf what's inside.\n\nWhat am I? (The answer is singular.)",
     hints: ["You get many types of these in the game."],
-    code: "Rune"
+    code: "Rune",
+    reward: "1 Jagged Totem"
   },
   {
     date: "2024-04-09",
@@ -89,21 +95,23 @@ window.TOPCOG_TAP_WIZARD_2_CODES = [
   {
     date: "2023-11-17",
     displayDate: "November 17, 2023",
-    status: "expired",
+    status: "active",
     riddle: "Not a clunk, nor a thump,\nNor a rub, nor a scratch.\n\nWhat's in a name,\nBut the answer to the game?\n\nNot quite a knock,\nNor simple as a touch.\n\nWhat am I?",
-    code: "Tap"
+    code: "Tap",
+    reward: "1 Magic Die"
   },
   {
     date: "2023-10-09",
     displayDate: "October 9, 2023",
-    status: "expired",
+    status: "active",
     announcement: "The answer is singular, not plural.",
     riddle: "I am by fire,\nin time,\nvia points,\nand for fate.\n\nWhat am I?",
     hints: [
       "I am available periodically.",
       "You compete in me."
     ],
-    code: "Trial"
+    code: "Trial",
+    reward: "100 Gems"
   },
   {
     date: "2023-08-06",
@@ -181,22 +189,33 @@ window.TOPCOG_TAP_WIZARD_2_CODES = [
   {
     date: "2022-03-19",
     displayDate: "March 19, 2022",
-    status: "active",
+    status: "evergreen",
     announcement: "Released to celebrate the Discord community passing 9,000 members.",
-    code: "ItsOver9000!!!"
+    code: "ItsOver9000!!!",
+    reward: "1 Magic Die"
+  },
+  {
+    date: "2022-01-20T12:02:00",
+    displayDate: "Evergreen",
+    status: "evergreen",
+    announcement: "A permanent Vault code that never expires.",
+    code: "TopCog",
+    reward: "1 Respec Token"
   },
   {
     date: "2022-01-20T12:01:00",
     displayDate: "Evergreen",
     status: "evergreen",
     announcement: "One of the first two codes released with the Vault. This code never expires.",
-    code: "Yahoo!"
+    code: "Yahoo!",
+    reward: "1 Jagged Totem"
   },
   {
     date: "2022-01-20T12:00:00",
     displayDate: "Evergreen",
     status: "evergreen",
     announcement: "One of the first two codes released with the Vault. This code never expires.",
-    code: "TapWizard2"
+    code: "TapWizard2",
+    reward: "100 Gems"
   }
 ];

@@ -593,6 +593,22 @@ body.modal-open {
   line-height: 1.6;
   margin-bottom: 12px;
 }
+.code-reward {
+  align-items: center;
+  background: rgba(255,137,6,0.09);
+  border: 1px solid rgba(255,137,6,0.16);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  display: inline-flex;
+  font-size: 0.78rem;
+  gap: 6px;
+  margin-bottom: 12px;
+  padding: 5px 9px;
+}
+.code-reward strong {
+  color: var(--accent-orange);
+  font-weight: 700;
+}
 .code-riddle {
   background: rgba(15,14,23,0.48);
   border-left: 3px solid rgba(168,85,247,0.7);
@@ -1192,7 +1208,7 @@ body.modal-open {
   });
 })();
 </script>
-<script src="data/tap-wizard-2-codes.js?v=1.0.0"></script>
+<script src="data/tap-wizard-2-codes.js?v=1.0.1"></script>
 <script>
 (() => {
   const entries = Array.isArray(window.TOPCOG_TAP_WIZARD_2_CODES)
@@ -1235,7 +1251,7 @@ body.modal-open {
     const intro = document.createElement('p');
     intro.className = 'codes-intro';
     intro.id = 'codes-intro';
-    intro.innerHTML = '<strong>Solve at your own pace.</strong> Reveal hints one at a time, then reveal the exact code. Enter codes in the Vault with the spelling and punctuation shown.';
+    intro.innerHTML = '<strong>Solve at your own pace.</strong> Reveal hints one at a time, then reveal the exact code. Enter codes in the Vault with the spelling and punctuation shown. Statuses were last verified in June 2026.';
     list.append(intro);
 
     [...entries]
@@ -1251,6 +1267,14 @@ body.modal-open {
         const status = entry.status || 'expired';
         meta.append(makeText('span', `code-status code-status-${status}`, statusLabels[status] || status));
         article.append(meta);
+
+        if (entry.reward) {
+          const reward = document.createElement('div');
+          reward.className = 'code-reward';
+          reward.innerHTML = '<strong>Reward</strong>';
+          reward.append(document.createTextNode(entry.reward));
+          article.append(reward);
+        }
 
         if (entry.announcement) {
           article.append(makeText('p', 'code-announcement', entry.announcement));
