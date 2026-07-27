@@ -1,6 +1,11 @@
 window.TOPCOG_CHANGELOGS = {
   "archmage-idle": [
     {
+      "date": "2026-07-27T12:00:00.000Z",
+      "displayDate": "July 27, 2026",
+      "body": "v1.3.6\n\nWhat's New in 1.3.6!\n- Fixed a crash on iOS that could occur immediately after accepting the Terms of Service.\n- The first copy of each Mysterious Artifact no longer reduces its drop chance.\n- Fixed output-boosting Elixirs not increasing rewards from identifying Mysterious Artifacts.\n- Appraisal's Identify Artifact action now displays its Output Multiplier.\n- Combat's Barrier bar now shows a tooltip with a breakdown of every bonus contributing to maximum Barrier.\n- Fixed the World Map covering conquest progress and map controls on the mobile Combat screen.\n- Updated the Cauldron guide to clarify that higher-tier Runes burn Hearth and Crucible energy faster.\n- Improved save backup selection with readable in-game styling and labels based on each backup's actual age.\n- Fixed non-English profile names making saves unreadable and prevented restored saves from replaying old cloud-profile deletions.\n- Fixed Scavenging and Diplomacy granting only one completed action from offline progress while Warp Control was enabled.\n- Fixed long item tooltips extending beyond the screen on desktop; source and use lists now switch to two columns when needed.\n- Reworked Bazaar Auction Interest with smoother linear and exponential growth, reaching x25 after 16 effective hours in Normal Mode or 1.5 effective hours in Turbo Mode.\n- Cloud saves now use a compact file format, reducing their storage size.\n\nThanks for playing! Please don't hesitate to reach out if you have any problems!"
+    },
+    {
       "date": "2026-07-24T12:00:00.000Z",
       "displayDate": "July 24, 2026",
       "body": "v1.3.3\n\nWhat's New in 1.3.3!\n- The Runic Cauldron has been rebalanced again, with smoother Hearth and Crucible input energy progression and more sustainable fuel usage.\n\nAdditional Patch Notes\n- Fixed Cloud Sync so loading a cloud save immediately grants the offline progress accumulated since that save.\n- Fixed the Runic Cauldron consuming Hearth and Crucible items much faster than the displayed rate.\n\nThanks for playing! Please don't hesitate to reach out if you have any problems!"
