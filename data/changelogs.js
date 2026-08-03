@@ -1,6 +1,11 @@
 window.TOPCOG_CHANGELOGS = {
   "archmage-idle": [
     {
+      "date": "2026-08-03T12:00:00.000Z",
+      "displayDate": "August 3, 2026",
+      "body": "v1.4.0\n\nWhat's New in 1.4.0!\n- A new New Game Plus mechanic called the Animus is coming soon!\n- Reduced the Gold cost of Action XP Spillover and Bazaar Bulk Sale Slider levels 7 and 8.\n\nAdditional Patch Notes\n- iOS now defaults to SVG and DOM rendering for stability. The Pixi compositor remains available in Performance settings and improves performance for many devices.\n- Scavenging Action Level Bonuses now list the per-location Action Rate bonus.\n- Removed redundant \"Upgrade\" wording from tome upgrade tooltips.\n- Updated all Sigil item descriptions with flavor text while keeping their bonuses listed separately in the Sigil Bonuses panel.\n- Academy Speed bonuses no longer cause the Self-Study multiplier to decay faster.\n- Combat loadout DPS and spell breakdowns now correctly display Wizard Cast Speed bonuses from the Guild Shop and active potions.\n\nThanks for playing! Please don't hesitate to reach out if you have any problems!"
+    },
+    {
       "date": "2026-07-28T12:00:00.000Z",
       "displayDate": "July 28, 2026",
       "body": "v1.3.8\n\nWhat's New in 1.3.8!\n- Fixed the Pixi compositor spritesheet URL on iOS so native rendering can initialize correctly.\n- Restored the Pixi combat map on mobile with an automatic SVG fallback when the graphics renderer is unavailable.\n- Added hidden graphics diagnostics to Settings for troubleshooting combat map rendering failures.\n- Fixed collapsed actions not staying collapsed when navigating between screens or reloading a save.\n- Added a Change Password option to Settings for signed-in cloud accounts.\n- Updated the packaged app icon across desktop, Android, and iOS.\n- Updated item wikis to show which Diplomacy difficulty tiles use each tribute item.\n- Made the Bazaar's Prestige Sale Multiplier display update every frame while viewing the Bazaar.\n- Fixed the level 30 Attunement milestone for Spirit Slot Gold Cost Reduction being labeled as a Skill bonus instead of Buffs Summoning.\n\nThanks for playing! Please don't hesitate to reach out if you have any problems!"
