@@ -1,6 +1,11 @@
 window.TOPCOG_CHANGELOGS = {
   "archmage-idle": [
     {
+      "date": "2026-08-26T12:00:00.000Z",
+      "displayDate": "August 26, 2026",
+      "body": "v2.1.0\n\nWhat's New in 2.1.0!\n- Sage Owl now grants up to +20 Barrier, and the Level 100 Diplomacy milestone now grants +10 Barrier.\n- Cauldron bonus breakdowns now show active Hearth and Crucible magnitude multipliers.\n- Insight, Epiphany, Breakthrough, and Eureka tooltips now show a breakdown of every bonus contributing to their drop chance.\n\nThanks for playing! Please don't hesitate to reach out if you have any problems!"
+    },
+    {
       "date": "2026-08-20T12:00:00.000Z",
       "displayDate": "August 20, 2026",
       "body": "v2.0.5\n\nWhat's New in 2.0.5!\n- The Animus has arrived! In New Game Plus and beyond, configure autonomous Skill Cores that perform actions alongside your Archmage.\n- Giant Bones now transform into 3 Bones instead of 2!\n\nAdditional Patch Notes\n- Research discoveries now follow the correct New Game Plus rarity during offline progress!\n- Animus Aux Core 2 now works correctly when Aux Core 1 is unavailable!\n\nThanks for playing! Please don't hesitate to reach out if you have any problems!"
