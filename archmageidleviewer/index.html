@@ -3,43 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Explore Archmage Idle XP and Skill Point requirements for levels 1–100. Compare actions in Standard or Turbo mode and New Game Plus 0–6.">
+  <meta name="description" content="Compare Archmage Idle XP curves for levels 1–100, Standard and Turbo modes, and New Game Plus 0–6.">
   <title>XP Atlas · Archmage Idle</title>
   <link rel="stylesheet" href="./theme.css">
-  <script type="module" crossorigin src="./assets/index-CcstDyIO.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-qvop9Dak.css">
+  <script type="module" crossorigin src="./assets/index-CShe_1Y4.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-D3Yxhnn-.css">
 </head>
 <body>
-  <header class="masthead"><a class="brand" href="./"><span class="brand-mark" aria-hidden="true">✧</span><span>ARCHMAGE IDLE<small>PLAYER TOOLS</small></span></a><span class="header-note">A field guide to progression</span><button id="download-all" class="quiet">↓ Download all data · CSV</button></header>
+  <header class="masthead">
+    <a class="brand" href="./"><span class="brand-mark" aria-hidden="true">✧</span><span>ARCHMAGE IDLE<small>XP ATLAS</small></span></a>
+    <button id="download-all" class="quiet" disabled>↓ Download all data · CSV</button>
+  </header>
   <div class="page">
-    <section class="intro"><div><p class="eyebrow">THE PROGRESSION COMPANION</p><h1>Every level.<br class="mobile-break"> Every possibility.</h1><p>Explore the path from apprentice to archmage.<br>Exact XP requirements, straight from the game’s balance tables.</p></div><div class="atlas-stamp" aria-hidden="true">✧<span>XP ATLAS</span><small>LEVELS 01 — 100</small></div></section>
-    <section class="settings" aria-label="Game settings"><div><span class="control-label">GAME MODE</span><label class="switch-label"><input id="turbo" type="checkbox" role="switch"><span class="switch" aria-hidden="true"></span><strong>Turbo mode</strong><span id="mode-label">Off</span></label></div><div><label class="control-label" for="ng-plus">NEW GAME PLUS</label><select id="ng-plus"><option value="0">Base game · NG+ 0</option><option value="1">New Game Plus 1</option><option value="2">New Game Plus 2</option><option value="3">New Game Plus 3</option><option value="4">New Game Plus 4</option><option value="5">New Game Plus 5</option><option value="6">New Game Plus 6</option></select></div><p id="scenario-note">Browse requirements for your next run.</p><span class="scenario-badge" id="scenario-badge">STANDARD / NG+ 0</span></section>
+    <section class="settings" aria-label="Game settings">
+      <label class="switch-label"><input id="turbo" type="checkbox" role="switch"><span class="switch" aria-hidden="true"></span><strong>Turbo mode</strong><span id="mode-label">Off</span></label>
+      <label class="ng-label" for="ng-plus">New Game Plus <select id="ng-plus"><option value="0">0 · Base</option><option value="1">NG+ 1</option><option value="2">NG+ 2</option><option value="3">NG+ 3</option><option value="4">NG+ 4</option><option value="5">NG+ 5</option><option value="6">NG+ 6</option></select></label>
+      <span class="scenario-badge" id="scenario-badge">STANDARD · NG+ 0</span>
+    </section>
     <div id="loading" role="status">Opening the atlas…</div>
-    <div class="workspace" id="workspace" hidden>
-      <aside><label for="search" class="control-label">FIND A SKILL OR ACTION</label><input id="search" type="search" placeholder="Search the atlas…"><div class="sidebar-title"><span>SKILLS</span><span id="skill-count"></span></div><nav id="skills" aria-label="Skills"></nav><p class="sidebar-note">Action levels earn Skill Points.<br>Skill Points raise your skill level.</p></aside>
-      <main id="main">
-        <div class="section-heading"><div><p class="eyebrow" id="skill-caption"></p><h2 id="skill-title"></h2></div><button id="share" class="quiet">↗ Copy link</button></div>
-        <div class="track-controls"><div><label class="control-label" for="track">ACTION / PROGRESSION TRACK</label><select id="track"></select></div><div class="segmented" role="group" aria-label="Table view"><button id="detail-view" aria-pressed="true">One track</button><button id="compare-view" aria-pressed="false">Compare</button></div></div>
-        <p id="track-note" class="track-note"></p>
-        <section class="xp-chart" aria-labelledby="chart-heading">
-          <div class="chart-heading"><div><p class="eyebrow">SEE THE CLIMB</p><h3 id="chart-heading">Compare XP curves</h3></div><label><span class="sr-only">Chart metric</span><select id="chart-metric"><option value="previous">XP to reach each level</option><option value="total">Cumulative XP</option></select></label></div>
-          <p class="chart-description">Plot up to three actions from any skill. The vertical axis fits your selection automatically.</p>
-          <div class="chart-selectors"><label><span class="control-label"><i class="series-dot series-0"></i>ACTION 1</span><select id="chart-action-0" aria-label="Chart action 1"></select></label><label><span class="control-label"><i class="series-dot series-1"></i>ACTION 2</span><select id="chart-action-1" aria-label="Chart action 2"></select></label><label><span class="control-label"><i class="series-dot series-2"></i>ACTION 3</span><select id="chart-action-2" aria-label="Chart action 3"></select></label></div>
-          <div class="chart-plot"><svg id="xp-chart-svg" viewBox="0 0 800 290" role="img" aria-label="XP requirements by action level"></svg></div>
-          <div class="chart-inspector"><label for="chart-level">Inspect level</label><input id="chart-level" type="range" min="1" max="100" value="50"><output id="chart-level-label" for="chart-level">50</output></div>
-          <div id="chart-values" class="chart-values" aria-live="polite"></div>
-        </section>
-        <div id="track-content">
-          <section class="summary" aria-label="Progression summary"><div><span class="control-label">TO REACH LEVEL 50</span><strong id="total-50"></strong><small id="unit-50"></small></div><div><span class="control-label">TO REACH LEVEL 100</span><strong id="total-100"></strong><small id="unit-100"></small></div><div class="curve-card"><span class="control-label">CUMULATIVE REQUIREMENTS</span><svg id="curve" viewBox="0 0 260 58" role="img" aria-label="Cumulative requirements from level 1 to 100"></svg><div class="curve-labels"><span>LV 1</span><span>LV 100</span></div></div></section>
-          <section class="planner" aria-label="Level range calculator"><span>Plan your climb</span><label>From <input id="from-level" type="number" min="1" max="100" value="1"></label><span aria-hidden="true">→</span><label>To <input id="to-level" type="number" min="1" max="100" value="100"></label><strong id="range-total" aria-live="polite"></strong><small>Starting at 0 progress in the current level.</small></section>
-          <div class="table-toolbar"><div><h3 id="table-title">Level requirements</h3><span id="row-label">All 100 levels</span></div><label id="metric-control" hidden><span class="sr-only">Comparison metric</span><select id="metric"><option value="total">Total to reach level</option><option value="previous">From previous level</option><option value="next">To next level</option></select></label><label class="compact-option"><input id="compact" type="checkbox"> Compact numbers</label><button id="export" class="quiet">↓ Export CSV</button></div>
-          <div class="table-scroll" tabindex="0" role="region" aria-label="XP requirements table"><table><caption class="sr-only" id="table-caption"></caption><thead id="table-head"></thead><tbody id="table-body"></tbody></table></div>
-          <p class="table-footnote">Level 1 starts at zero. “From previous” is the cost of reaching that level; “Total” adds every prior level. Level 100 is the cap.</p>
+    <main id="workspace" hidden>
+      <section class="xp-chart" aria-labelledby="chart-heading">
+        <div class="chart-heading"><h1 id="chart-heading">Compare XP curves</h1><button id="share" class="quiet">↗ Copy link</button></div>
+        <div class="chart-selectors">
+          <fieldset><legend><i class="series-dot series-0"></i>Action 1</legend><label for="chart-skill-0">Skill</label><select id="chart-skill-0" aria-label="Action 1 skill"></select><label for="chart-action-0">Action</label><select id="chart-action-0" aria-label="Action 1 action"></select></fieldset>
+          <fieldset><legend><i class="series-dot series-1"></i>Action 2</legend><label for="chart-skill-1">Skill</label><select id="chart-skill-1" aria-label="Action 2 skill"></select><label for="chart-action-1">Action</label><select id="chart-action-1" aria-label="Action 2 action"></select></fieldset>
+          <fieldset><legend><i class="series-dot series-2"></i>Action 3</legend><label for="chart-skill-2">Skill</label><select id="chart-skill-2" aria-label="Action 3 skill"></select><label for="chart-action-2">Action</label><select id="chart-action-2" aria-label="Action 3 action"></select></fieldset>
         </div>
-        <section id="no-xp" class="empty-state" hidden><span aria-hidden="true">✧</span><h3>No separate XP track</h3><p>This action does not earn its own action XP. Use the skill’s other tracks to explore its progression.</p></section>
-      </main>
-    </div>
-    <footer><span>ARCHMAGE IDLE <span class="footer-divider">/</span> XP ATLAS</span><span id="version"></span><span>Requirements, not earning rates.</span></footer>
+        <div class="chart-options"><label for="chart-metric">Show <select id="chart-metric"><option value="previous">XP from previous level</option><option value="total">Cumulative XP</option></select></label><span>Chart and table</span></div>
+        <div class="chart-plot"><svg id="xp-chart-svg" viewBox="0 0 800 290" role="img" aria-label="XP requirements by action level"></svg></div>
+        <div class="axis-controls">
+          <div class="axis-range" role="group" aria-label="Chart level range"><span>Level range</span><output id="min-level-label" for="min-level">1</output><div class="dual-range"><div class="range-track"></div><div id="range-selection" class="range-selection"></div><input id="min-level" type="range" min="1" max="100" value="1" aria-label="Minimum action level"><input id="max-level" type="range" min="1" max="100" value="100" aria-label="Maximum action level"></div><output id="max-level-label" for="max-level">100</output></div>
+          <div class="chart-inspector"><label for="chart-level">Inspect level</label><input id="chart-level" type="range" min="1" max="100" value="50"><output id="chart-level-label" for="chart-level">50</output></div>
+        </div>
+        <div id="chart-values" class="chart-values" aria-live="polite"></div>
+      </section>
+      <section class="planner" aria-labelledby="planner-heading">
+        <div class="planner-controls"><h2 id="planner-heading">Plan your climb</h2><label>From <input id="from-level" type="number" min="1" max="100" value="1"></label><span aria-hidden="true">→</span><label>To <input id="to-level" type="number" min="1" max="100" value="100"></label></div>
+        <div id="range-totals" class="action-totals" aria-live="polite"></div>
+        <p class="helper-note">Starting at 0 progress in the current level.</p>
+      </section>
+      <section class="requirements" aria-labelledby="table-title">
+        <div class="table-toolbar"><h2 id="table-title">Level requirements</h2><button id="export" class="quiet">↓ Export CSV</button></div>
+        <div class="table-options"><span id="table-metric-label">XP from previous level</span><label class="compact-option"><input id="compact" type="checkbox"> Compact numbers</label></div>
+        <div class="table-scroll" tabindex="0" role="region" aria-label="XP requirements table"><table><caption class="sr-only" id="table-caption"></caption><thead id="table-head"></thead><tbody id="table-body"></tbody></table></div>
+        <p class="table-footnote">Level 1 starts at zero. “From previous level” is the XP needed for that level; “Cumulative XP” adds every prior level. Level 100 is the cap.</p>
+      </section>
+    </main>
+    <footer><span>ARCHMAGE IDLE / XP ATLAS</span><span id="version"></span></footer>
   </div>
   <div id="toast" role="status" hidden></div>
 </body>
