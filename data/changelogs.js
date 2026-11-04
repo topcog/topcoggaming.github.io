@@ -3,7 +3,7 @@ window.TOPCOG_CHANGELOGS = {
     {
       "date": "2026-11-04T12:00:00.000Z",
       "displayDate": "November 4, 2026",
-      "body": "v3.0.4\n\nWhat's New in 3.0.4!\n\n- On Windows, if Archmage Idle is installed on a network drive or NAS, it now explains that it needs a local drive instead of failing to start. To move it in Steam, open Settings → Storage, select Archmage Idle, and move it to a Steam library on a local drive.\n- The Windows version now keeps startup logs to help us diagnose launch problems if you contact support.\n\nThanks for playing! Please don't hesitate to reach out if you have any problems!"
+      "body": "v3.0.4\n\nWhat's New in 3.0.4!\n\n- On Windows, if Archmage Idle is installed on a network drive or NAS, it now explains that it needs a local drive instead of failing to start. To move it in Steam, open Settings → Storage, select Archmage Idle, and move it to a Steam library on a local drive.\n\nThanks for playing! Please don't hesitate to reach out if you have any problems!"
     },
     {
       "date": "2026-11-03T12:00:00.000Z",
